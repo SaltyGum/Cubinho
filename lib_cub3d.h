@@ -6,7 +6,7 @@
 /*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/02/13 13:30:27 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/03/18 14:04:10 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@
 # include <fcntl.h>
 # include "mlx_linux/mlx.h"
 
+//MATH DEFINES
+# define PI (3,14159265358)
+//VIEW VALUE == 60 * (PI / 180.0)
+# define VIEW (1.04719755119)
+
+//WINDOW SIZE
 # define WIDTH 800.0
 # define HEIGHT 800.0
 
 // BUTTONS SETUP
-
 // ARROWS
 # define A_UP 65362
 # define A_DOWN 65364
@@ -37,9 +42,11 @@
 // SCROLLING
 # define SCRL_UP 4
 # define SCRL_DOWN 5
+
 // COLOR CHANGE HELP PANEL AND RESET
 # define C_BUT 99
 # define R_BUT 114
+
 // WINDOW CLOSE
 # define ESC_BUT 65307
 # define WIN_X 17
