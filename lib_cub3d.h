@@ -6,7 +6,7 @@
 /*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/03/18 14:04:10 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/03/19 15:27:19 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@
 
 //MATH DEFINES
 # define PI (3,14159265358)
+
 //VIEW VALUE == 60 * (PI / 180.0)
 # define VIEW (1.04719755119)
+
+// MAP
+# define TILE_SIZE (32)
 
 //WINDOW SIZE
 # define WIDTH 800.0
@@ -51,6 +55,18 @@
 # define ESC_BUT 65307
 # define WIN_X 17
 
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	radius;
+	double	vw_side;
+	double	mv_side;
+	double	rot_ang;
+	double	mv_spd;
+	double	rot_spd;
+}				t_player
+
 typedef struct s_data
 {
 	char	*type;
@@ -63,10 +79,13 @@ typedef struct s_data
 	int		endian;
 }				t_cub3d;
 
+//Control Functions
 int	ch_ose(int key, t_cub3d *blk);
 int	clk_act(int key, int x, int y, t_cub3d *blk);
 int	ft_close(t_cub3d *blk);
 
-
+//Math Functions
+double	degtorad(double degrees);
+double	radtodeg(double radius);
 
 #endif
