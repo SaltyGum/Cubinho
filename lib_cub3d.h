@@ -6,7 +6,7 @@
 /*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/03/19 15:27:19 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/03/19 20:14:14 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_player
 	double	rot_ang;
 	double	mv_spd;
 	double	rot_spd;
-}				t_player
+}				t_player;
 
 typedef struct s_data
 {

@@ -6,7 +6,7 @@
 /*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:00:28 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/02/13 13:30:24 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/03/19 20:13:54 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	ch_ose(int key, t_cub3d *blk)
 
 int	clk_act(int key, int x, int y, t_cub3d *blk)
 {
-	printf("Mouse key == %d\n", key);
+	printf("Mouse key == %d In position X == %d && Y == %d\n", key, x, y);
 	return (0);
 }
