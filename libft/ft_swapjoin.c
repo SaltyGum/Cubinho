@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ft_swapjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
+/*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/02 07:37:17 by dvargas          ###   ########.fr       */
+/*   Created: 2023/01/29 08:31:43 by dvargas           #+#    #+#             */
+/*   Updated: 2023/01/29 08:33:32 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "libft.h"
 
-double	degtorad(double degrees)
+void	ft_swapjoin(char **s1, char *s2)
 {
-	return (degrees * (PI / 180.0));
-}
+	char	*tmp;
 
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
+	tmp = ft_strjoin(*s1, s2);
+	free(*s1);
+	*s1 = tmp;
 }

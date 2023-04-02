@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lib_cub3d.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
+/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/03/19 20:14:14 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/02 09:33:51 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "mlx_linux/mlx.h"
+# include "libft/libft.h"
+# include "lib_parse.h"
 
 //MATH DEFINES
 # define PI (3,14159265358)

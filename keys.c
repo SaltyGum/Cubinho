@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
+/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:00:28 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/03/19 20:13:54 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/02 07:55:06 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
-
+/*
 int	ch_ose(int key, t_cub3d *blk)
 {
 	if (key == ESC_BUT)
@@ -38,3 +38,4 @@ int	clk_act(int key, int x, int y, t_cub3d *blk)
 	printf("Mouse key == %d In position X == %d && Y == %d\n", key, x, y);
 	return (0);
 }
+*/

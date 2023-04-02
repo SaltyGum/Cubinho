@@ -1,0 +1,11 @@
+NO ./maps/BRICK_3E.png
+SO ./maps/CONSOLE_1A.png
+WE ./maps/FLOOR_2F.png
+EA ./maps/LAB_1C.png
+
+F 20,22,25
+C 20,,11
+
+11111
+100E1
+11111
