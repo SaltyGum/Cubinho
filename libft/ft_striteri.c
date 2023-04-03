@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
+/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/02 07:37:17 by dvargas          ###   ########.fr       */
+/*   Created: 2022/05/12 11:30:34 by jeluiz4           #+#    #+#             */
+/*   Updated: 2022/05/12 12:05:30 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "libft.h"
 
-double	degtorad(double degrees)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	return (degrees * (PI / 180.0));
-}
+	unsigned int	len;
+	unsigned int	i;
 
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
+	i = 0;
+	len = 0;
+	if (!s || !f)
+		return ;
+	len = (unsigned int)ft_strlen(s);
+	while (i < len)
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
 }

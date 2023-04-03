@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
+/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/02 07:37:17 by dvargas          ###   ########.fr       */
+/*   Created: 2022/05/04 11:03:07 by jeluiz4           #+#    #+#             */
+/*   Updated: 2022/05/11 11:24:39 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
-
-double	degtorad(double degrees)
+void	*ft_memset(void *b, int c, int len)
 {
-	return (degrees * (PI / 180.0));
-}
+	unsigned char	*cast;
 
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
+	cast = b;
+	while (len-- > 0)
+	{
+		*cast++ = c;
+	}
+	return (b);
 }

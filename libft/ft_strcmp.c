@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
+/*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/02 07:37:17 by dvargas          ###   ########.fr       */
+/*   Created: 2022/12/29 08:10:05 by dvargas           #+#    #+#             */
+/*   Updated: 2022/12/29 08:10:10 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "libft.h"
 
-double	degtorad(double degrees)
+int	ft_strcmp(char *s1, char *s2)
 {
-	return (degrees * (PI / 180.0));
-}
+	int	i;
 
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		++i;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

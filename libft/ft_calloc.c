@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
+/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/02 07:37:17 by dvargas          ###   ########.fr       */
+/*   Created: 2022/05/09 14:37:59 by jeluiz4           #+#    #+#             */
+/*   Updated: 2022/05/09 15:28:37 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "libft.h"
 
-double	degtorad(double degrees)
+void	*ft_calloc(size_t count, size_t size)
 {
-	return (degrees * (PI / 180.0));
-}
+	void	*ptr;
 
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
+	if (count == 0 || size == 0)
+	{
+		count = 1;
+		size = 1;
+	}
+	ptr = malloc(count * size);
+	if (ptr)
+		ft_bzero(ptr, (count * size));
+	return (ptr);
 }

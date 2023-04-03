@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/02 07:37:17 by dvargas          ###   ########.fr       */
+/*   Created: 2022/05/03 19:17:16 by jeluiz4           #+#    #+#             */
+/*   Updated: 2023/03/21 08:51:48 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "libft.h"
 
-double	degtorad(double degrees)
+size_t	ft_strlen(const char *s)
 {
-	return (degrees * (PI / 180.0));
-}
+	size_t	out;
 
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
+	out = 0;
+	while (s[out] != '\0')
+		out++;
+	return (out);
 }

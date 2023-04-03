@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
+/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/02 07:37:17 by dvargas          ###   ########.fr       */
+/*   Created: 2022/05/12 14:08:52 by jeluiz4           #+#    #+#             */
+/*   Updated: 2023/01/04 12:00:52 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "libft.h"
 
-double	degtorad(double degrees)
+void	ft_putendl_fd(char *s, int fd)
 {
-	return (degrees * (PI / 180.0));
-}
-
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
