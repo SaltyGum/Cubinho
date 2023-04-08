@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
+/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/03/19 15:30:01 by jeluiz4          ###   ########.fr       */
+/*   Created: 2023/04/08 09:16:56 by dvargas           #+#    #+#             */
+/*   Updated: 2023/04/08 09:17:31 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lib_cub3d.h"
+#include "lib_cub3d.h"
 
-void	player_init()
+int	ft_close(t_cub3d *blk)
 {
-	// TODO: Start x & y with the position of the map
-	// TODO: Start the view point towards the same angle map assumes
-	// TODO: Initialize the rest of the variables of the construct player
+	if (blk->img)
+		mlx_destroy_image(blk->mlx, blk->img);
+	if (blk->mlx && blk->win)
+	{
+		mlx_destroy_window(blk->mlx, blk->win);
+		free(blk->mlx);
+	}
+	printf("END\n");
+	exit(42);
 }

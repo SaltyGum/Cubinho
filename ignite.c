@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   ignite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 09:22:51 by dvargas          ###   ########.fr       */
+/*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
+/*   Updated: 2023/04/08 10:10:27 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+# include "lib_cub3d.h"
 
-double	degtorad(double degrees)
+void	player_init(t_cub3d *blk, t_player *player)
 {
-	return (degrees * (PI / 180.0));
-}
-
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
-}
-
-void	my_mlx_pixelput(t_cub3d *data, int x, int y, int color)
-{
-	char	*pixel;
-
-	pixel = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)pixel = color;
+	player->x = blk->map->map.playerpositionx * TILE_SIZE;
+	player->y = blk->map->map.playerpositiony * TILE_SIZE;
+	player->width = 25;
+	player->height = 25;
+	player->rotation_angle = PI / 2;
+	player->walk_speed = 1;
+	player->turn_speed = 45 * (PI / 180);
+	player->turn_direction = 0;
+	player->walk_direction = 0;
+	player->moved = 0;
 }
