@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 09:15:46 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 10:10:27 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	player_init(t_cub3d *blk, t_player *player)
 {
 	player->x = blk->map->map.playerpositionx * TILE_SIZE;
 	player->y = blk->map->map.playerpositiony * TILE_SIZE;
-	player->width = 1;
-	player->height = 1;
+	player->width = 25;
+	player->height = 25;
 	player->rotation_angle = PI / 2;
 	player->walk_speed = 1;
 	player->turn_speed = 45 * (PI / 180);

@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:14:14 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/08 09:26:09 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 10:27:27 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ int move_to_back(t_cub3d *blk)
 	return(move_is_valid(blk, move_x, move_y));
 }
 
+// TO-DO: Create other rotate but negative.
 int rotate_player(t_cub3d *blk)
 {
-	blk->player.rotation_angle += blk->player.turn_direction * blk->player.turn_speed * 0.0091;
+	blk->player.rotation_angle += blk->player.turn_direction * blk->player.turn_speed * 0.045 * -1;
 	return(1);
 }
 
