@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:41:12 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/02 07:58:00 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:21:55 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	find_player(t_parse *parse, size_t x, size_t y, int ret)
 	}
 	if (ret == 1)
 	{
-		parse->map.playerpositionx = position[0];
-		parse->map.playerpositiony = position[1];
+		parse->map.playerpositionx = position[0] - 1;
+		parse->map.playerpositiony = position[1] - 1;
 		return (1);
 	}
 	return (0);

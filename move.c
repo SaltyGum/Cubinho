@@ -6,15 +6,12 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:14:14 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/08 10:27:27 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:23:13 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
 
-// Temos um "problema"
-//por algum motivo o GRID com as coordenadas de map_grid nnao esta vindo com 0 mas sim com 48(chao) e 49(parede)
-//possivelmente no futuro teremos que resolver isso mas para agora acredito nao dar maiores problemas.
 int move_is_valid(t_cub3d *blk, float move_x, float move_y)
 {
 	int map_grid_x;
@@ -26,7 +23,7 @@ int move_is_valid(t_cub3d *blk, float move_x, float move_y)
 	//printf("Grid_X: %d\n", map_grid_x);
 	//printf("Grid_y:%d\n\n", map_grid_y);
 	//printf("GRID = %d\n\n\n", blk->map->map.map[map_grid_y][map_grid_x]);
-	if(blk->map->map.map[map_grid_y][map_grid_x] != 49) // isso aqui deveria ser != 0 mas por algum motivo a localizacao das paredes esta como 49
+	if(blk->map->map.map[map_grid_y][map_grid_x] == '0')
 	{
 		blk->player.x = move_x;
 		blk->player.y = move_y;
@@ -57,7 +54,6 @@ int move_to_back(t_cub3d *blk)
 	return(move_is_valid(blk, move_x, move_y));
 }
 
-// TO-DO: Create other rotate but negative.
 int rotate_player(t_cub3d *blk)
 {
 	blk->player.rotation_angle += blk->player.turn_direction * blk->player.turn_speed * 0.045 * -1;

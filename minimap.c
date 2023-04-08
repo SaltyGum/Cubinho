@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:19:42 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/08 09:36:11 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:17:32 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void draw_minimap(t_cub3d *blk)
 		j = 0;
 		while(j < blk->map->map.width)
 		{
-			 if (map[i][j] == '1')
+			if (map[i][j] == '1')
 				draw_rectangle(blk, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, RED_PIXEL);
 			else if (map[i][j] == '0')
 				draw_rectangle(blk, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, WHITE_PIXEL);
@@ -35,6 +35,17 @@ void draw_minimap(t_cub3d *blk)
 		}
 		i++;
 	}
+}
+
+void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color)
+{
+    t_pos pos[2];
+
+    pos[0].x = x;
+    pos[0].y = y;
+    pos[1].x = x + width;
+    pos[1].y = y + height;
+    make_rectangle(game, pos, color);
 }
 
 void draw_player(t_cub3d *blk)
