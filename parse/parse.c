@@ -6,11 +6,49 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:22:41 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/02 07:40:56 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:32:16 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib_cub3d.h"
+
+void set_player_to_zero(t_parse *parse)
+{
+	size_t x;
+	size_t y;
+
+	x = parse->map.playerpositionx;
+	y = parse->map.playerpositiony;
+	parse->map.map[y][x] = '0';
+}
+
+void set_player_direction(t_parse *parse)
+{
+	int x;
+	int y;
+	char **map;
+
+	x = -1;
+	y = -1;
+
+	map = parse->map.map;
+	while (++y < parse->map.height)
+	{
+		x = -1;
+		while (++x < ft_strlen(map[y]))
+		{
+			if (map[y][x] == 'N')
+				parse->map.direction = 'N';
+			if (map[y][x] == 'S')
+				parse->map.direction = 'S';
+			if (map[y][x] == 'W')
+				parse->map.direction = 'W';
+			if (map[y][x] == 'E')
+				parse->map.direction = 'E';
+		}
+	}
+	set_player_to_zero(parse);
+}
 
 t_parse	*parse_map(char *path)
 {
@@ -37,5 +75,6 @@ t_parse	*parse_map(char *path)
 		return (ft_error("no Player"), free(line), free_parse(parse));
 	if (!validate_map(*parse))
 		return (ft_error("Not a valid map\n"), free(line), free_parse(parse));
+	set_player_direction(parse);
 	return (parse);
 }

@@ -2,3 +2,4 @@
 *.json
 *.o
 cub3D
+libft/libft.a

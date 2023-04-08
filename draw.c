@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:32:10 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 09:22:49 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:20:42 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void draw_line(t_cub3d *blk, int x0, int y0, int x1, int y1)
 	int i = 0;
   while(i <= steps)
   {
-	my_mlx_pixelput(blk, x, y, RED_PIXEL);
+	my_mlx_pixelput(blk, x, y, 0x0200200);
     x += x_inc;
     y += y_inc;
 	i++;
@@ -46,15 +46,4 @@ void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
 		}
 		pos[0].y += 1;
 	}
-}
-
-void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color)
-{
-    t_pos pos[2];
-
-    pos[0].x = x;
-    pos[0].y = y;
-    pos[1].x = x + width;
-    pos[1].y = y + height;
-    make_rectangle(game, pos, color);
 }

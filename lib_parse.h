@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 07:23:41 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/02 07:43:55 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:31:43 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_map{
 	size_t	height;
 	size_t	playerpositionx;
 	size_t	playerpositiony;
+	char	direction;
 }	t_map;
 
 typedef struct s_parse{

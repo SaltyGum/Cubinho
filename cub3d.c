@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 09:36:14 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:47:35 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ int loop_render(t_cub3d *blk)
 	if(blk->player.moved == 0)
 		return(0);
 	minimap_render(blk);
-	//blk->img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
-	//blk->addr = mlx_get_data_addr(blk->img, &blk->bits_per_pixel, &blk->line_length, &blk->endian);
-	//mlx_destroy_image(blk->mlx, blk->img);
 	return(1);
 }
 
