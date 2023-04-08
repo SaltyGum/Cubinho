@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_lib.c                                         :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 09:22:51 by dvargas          ###   ########.fr       */
+/*   Created: 2023/04/08 09:16:56 by dvargas           #+#    #+#             */
+/*   Updated: 2023/04/08 09:17:31 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
 
-double	degtorad(double degrees)
+int	ft_close(t_cub3d *blk)
 {
-	return (degrees * (PI / 180.0));
-}
-
-double	radtodeg(double radius)
-{
-	return (radius * (180.0 / PI));
-}
-
-void	my_mlx_pixelput(t_cub3d *data, int x, int y, int color)
-{
-	char	*pixel;
-
-	pixel = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)pixel = color;
+	if (blk->img)
+		mlx_destroy_image(blk->mlx, blk->img);
+	if (blk->mlx && blk->win)
+	{
+		mlx_destroy_window(blk->mlx, blk->win);
+		free(blk->mlx);
+	}
+	printf("END\n");
+	exit(42);
 }
