@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 17:47:35 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/09 08:30:40 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int loop_render(t_cub3d *blk)
 	blk->player.moved += move_player(blk);
 	if(blk->player.moved == 0)
 		return(0);
+	cast_rays(blk);
 	minimap_render(blk);
 	return(1);
 }
@@ -35,7 +36,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_error("Wrong number of arguments"), 1);
 	ft_printf("Parabens, o mapa e valido, vamos brincar\n");
-
 	blk->mlx = mlx_init();
 	blk->win = mlx_new_window(blk->mlx, WIDTH, HEIGHT, "CUB3D");
 	blk->img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);

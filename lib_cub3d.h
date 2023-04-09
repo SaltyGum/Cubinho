@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 09:31:20 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/09 09:41:18 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@
 # define TILE_SIZE (32)
 
 //WINDOW SIZE
-# define WIDTH 2000.0
-# define HEIGHT 800.0
+//# define WIDTH 2000
+#define WIDTH 33 * 32
+# define HEIGHT 14 * 32
 
 //Ray
-# define NB_OF_RAYS(WIDTH)
+# define NB_OF_RAYS 50
 
 // BUTTONS SETUP
 // ARROWS
@@ -89,10 +90,25 @@ typedef struct s_player
 
 }				t_player;
 
+typedef struct s_ray
+{
+	float ray_angle;
+	float hit_x_wall;
+	float hit_y_wall;
+	float distance;
+	int is_hit_vertical;
+	int is_ray_face_up;
+	int is_ray_face_down;
+	int is_ray_face_left;
+	int is_ray_face_right;
+	int hit_content;
+}				t_ray;
+
 typedef struct s_cub3d
 {
 	t_player player;
 	t_parse	*map;
+	t_ray	ray[NB_OF_RAYS];
 	char	*type;
 	void	*mlx;
 	void	*win;
@@ -125,7 +141,8 @@ double	radtodeg(double radius);
 
 //Draw Functions
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
-void draw_line(t_cub3d *blk, int x0, int y0, int x1, int y1);
+void draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1);
+void	make_rectangle(t_cub3d *game, t_pos pos[2], int color);
 
 //Render Functions
 void minimap_render(t_cub3d *blk);
@@ -134,5 +151,7 @@ int render(t_cub3d *blk);
 //Move Functions
 int move_player(t_cub3d *blk);
 
+//Ray
+void cast_rays(t_cub3d *blk);
 
 #endif

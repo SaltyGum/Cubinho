@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:14:14 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/08 17:23:13 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/09 09:51:54 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int move_to_back(t_cub3d *blk)
 
 int rotate_player(t_cub3d *blk)
 {
-	blk->player.rotation_angle += blk->player.turn_direction * blk->player.turn_speed * 0.045 * -1;
+	blk->player.rotation_angle += blk->player.turn_direction * blk->player.turn_speed * 0.045;
 	return(1);
 }
 

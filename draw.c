@@ -6,13 +6,13 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:32:10 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 17:20:42 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/09 07:30:51 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
 
-void draw_line(t_cub3d *blk, int x0, int y0, int x1, int y1)
+void draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1)
 {
   int dx = x1 - x0;
   int dy = y1 - y0;
