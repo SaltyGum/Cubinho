@@ -6,29 +6,31 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/09 08:30:40 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 09:42:47 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
 #include "lib_parse.h"
 
-int loop_render(t_cub3d *blk)
+int	loop_render(t_cub3d *blk)
 {
 	blk->player.moved += move_player(blk);
-	if(blk->player.moved == 0)
-		return(0);
+	if (blk->player.moved == 0)
+		return (0);
 	cast_rays(blk);
 	minimap_render(blk);
-	return(1);
+	generate3DProjection(blk);
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_cub3d	*blk;
+
 	blk = malloc(sizeof(t_cub3d) * 1);
-	if(!blk)
-		return(1);
+	if (!blk)
+		return (1);
 			blk->map = parse_map(argv[1]);
 	if (blk->map == NULL)
 		return (printf("Algo deu errado no caminho meu chapa\n\n"), 1);
@@ -39,7 +41,8 @@ int	main(int argc, char **argv)
 	blk->mlx = mlx_init();
 	blk->win = mlx_new_window(blk->mlx, WIDTH, HEIGHT, "CUB3D");
 	blk->img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
-	blk->addr = mlx_get_data_addr(blk->img, &blk->bits_per_pixel, &blk->line_length, &blk->endian);
+	blk->addr = mlx_get_data_addr(blk->img, &blk->bits_per_pixel,
+			&blk->line_length, &blk->endian);
 	blk->player.moved = 1;
 	loop_render(blk);
 	key_listening(blk);

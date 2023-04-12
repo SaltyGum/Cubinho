@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:32:10 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/09 07:30:51 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 09:47:34 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,31 @@ void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
 		}
 		pos[0].y += 1;
 	}
+}
+
+void	generate3DProjection(t_cub3d *blk) {
+    for (int i = 0; i < NB_OF_RAYS; i++) {
+        float perpDistance = blk->ray[i].distance * cos(blk->ray[i].ray_angle - blk->player.rotation_angle);
+        float distanceProjPlane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
+        float projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
+
+        int wallStripHeight = (int)projectedWallHeight;
+
+        int wallTopPixel = (HEIGHT / 2) - (wallStripHeight / 2);
+        wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
+
+        int wallBottomPixel = (HEIGHT / 2) + (wallStripHeight / 2);
+
+		if	(wallBottomPixel > HEIGHT)
+			wallBottomPixel = HEIGHT;
+		//wallBottomPixel = wallBottomPixel > HEIGHT ? HEIGHT : wallBottomPixel;
+        // render the wall from wallTopPixel to wallBottomPixel
+        for (int y = wallTopPixel; y < wallBottomPixel; y++) {
+			if (blk->ray[i].is_hit_vertical)
+				my_mlx_pixelput(blk, wallBottomPixel, wallTopPixel, 0xFFFFFFFF);
+			else
+            	my_mlx_pixelput(blk, wallBottomPixel, wallTopPixel, 0xFFCCCCCC);
+			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
+        }
+    }
 }

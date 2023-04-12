@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 07:29:40 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 09:43:48 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 //# define WIDTH 2000
 #define WIDTH 1600
 # define HEIGHT 800
-# define MINIMAP_SCALE 1.0
+# define MINIMAP_SCALE 0.5
 
 //Ray
 # define NB_OF_RAYS WIDTH
@@ -144,6 +144,7 @@ double	radtodeg(double radius);
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
 void draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1);
 void	make_rectangle(t_cub3d *game, t_pos pos[2], int color);
+void	generate3DProjection(t_cub3d *blk);
 
 //Render Functions
 void minimap_render(t_cub3d *blk);
