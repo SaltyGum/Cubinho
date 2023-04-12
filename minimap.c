@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:19:42 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/09 10:20:33 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 07:25:32 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void draw_minimap(t_cub3d *blk)
 		while(j < blk->map->map.width)
 		{
 			if (map[i][j] == '1')
-				draw_rectangle(blk, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, RED_PIXEL);
+				draw_rectangle(blk, j * TILE_SIZE * MINIMAP_SCALE, i * TILE_SIZE* MINIMAP_SCALE, TILE_SIZE* MINIMAP_SCALE, TILE_SIZE* MINIMAP_SCALE, RED_PIXEL);
 			else if (map[i][j] == '0')
-				draw_rectangle(blk, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, WHITE_PIXEL);
+				draw_rectangle(blk, j * TILE_SIZE * MINIMAP_SCALE, i * TILE_SIZE* MINIMAP_SCALE, TILE_SIZE* MINIMAP_SCALE, TILE_SIZE* MINIMAP_SCALE, WHITE_PIXEL);
 			else
-				draw_rectangle(blk, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, GREY_PIXEL);
+				draw_rectangle(blk, j * TILE_SIZE * MINIMAP_SCALE, i * TILE_SIZE* MINIMAP_SCALE, TILE_SIZE* MINIMAP_SCALE, TILE_SIZE* MINIMAP_SCALE, GREY_PIXEL);
 			j++;
 		}
 		i++;
@@ -50,8 +50,8 @@ void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int colo
 
 void draw_player(t_cub3d *blk)
 {
-	draw_rectangle(blk, blk->player.x, blk->player.y, blk->player.width, blk->player.height, 0xf1d2a2);
-	draw_line(blk, blk->player.x, blk->player.y, blk->player.x + cos(blk->player.rotation_angle) * 20, blk->player.y + sin(blk->player.rotation_angle) * 20);
+	draw_rectangle(blk, blk->player.x * MINIMAP_SCALE, blk->player.y * MINIMAP_SCALE, blk->player.width * MINIMAP_SCALE, blk->player.height * MINIMAP_SCALE, 0xf1d2a2);
+	draw_line(blk, blk->player.x * MINIMAP_SCALE, blk->player.y* MINIMAP_SCALE, blk->player.x * MINIMAP_SCALE + cos(blk->player.rotation_angle) * 20, blk->player.y * MINIMAP_SCALE + sin(blk->player.rotation_angle) * 20);
 }
 
 float norm_angle(float angle)
@@ -69,7 +69,7 @@ float points_distance(float x1, float y1, float x2, float y2)
 
 int is_a_wall(t_cub3d *blk, float x, float y)
 {
-	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+	if (x < 0 || x > blk->map->map.width * TILE_SIZE || y < 0 || y > blk->map->map.height * TILE_SIZE) {
         return TRUE;
     }
 	int map_grid_x = floor(x / TILE_SIZE);
@@ -125,7 +125,7 @@ void cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 	float next_hor_touch_x = xintercept;
 	float next_hor_touch_y = yintercept;
 
-	while (next_hor_touch_x >= 0 && next_hor_touch_x <= WIDTH && next_hor_touch_y >= 0 && next_hor_touch_y <= HEIGHT) {
+	while (next_hor_touch_x >= 0 && next_hor_touch_x <= blk->map->map.width * TILE_SIZE && next_hor_touch_y >= 0 && next_hor_touch_y <= blk->map->map.height * TILE_SIZE) {
         float x_to_check = next_hor_touch_x;
         float y_to_check = next_hor_touch_y;
 		if(ray_face_up)
@@ -176,7 +176,7 @@ void cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 	float next_vert_touch_x = xintercept;
 	float next_vert_touch_y = yintercept;
 
-	while (next_vert_touch_x >= 0 && next_vert_touch_x <= WIDTH && next_vert_touch_y >= 0 && next_vert_touch_y <= HEIGHT) {
+	while (next_vert_touch_x >= 0 && next_vert_touch_x <= blk->map->map.width * TILE_SIZE && next_vert_touch_y >= 0 && next_vert_touch_y <= blk->map->map.height * TILE_SIZE) {
         float x_to_check = next_vert_touch_x;
 		if(ray_face_left)
 			x_to_check -= 1;
@@ -247,7 +247,7 @@ void render_rays(t_cub3d *blk)
 	int i = 0;
 	while(i < NB_OF_RAYS)
 	{
-		draw_line(blk, blk->player.x, blk->player.y, blk->ray[i].hit_x_wall, blk->ray[i].hit_y_wall);
+		draw_line(blk, blk->player.x * MINIMAP_SCALE, blk->player.y * MINIMAP_SCALE, blk->ray[i].hit_x_wall * MINIMAP_SCALE, blk->ray[i].hit_y_wall * MINIMAP_SCALE);
 		i++;
 	}
 }
