@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 07:29:40 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 18:00:25 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 //WINDOW SIZE
 //# define WIDTH 2000
-#define WIDTH 1600
+# define WIDTH 1600
 # define HEIGHT 800
 # define MINIMAP_SCALE 1.0
 
@@ -93,16 +93,16 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	float ray_angle;
-	float hit_x_wall;
-	float hit_y_wall;
-	float distance;
-	int is_hit_vertical;
-	int is_ray_face_up;
-	int is_ray_face_down;
-	int is_ray_face_left;
-	int is_ray_face_right;
-	int hit_content;
+	float	ray_angle;
+	float	hit_x_wall;
+	float	hit_y_wall;
+	float	distance;
+	int		is_hit_vertical;
+	int		is_ray_face_up;
+	int		is_ray_face_down;
+	int		is_ray_face_left;
+	int		is_ray_face_right;
+	int		hit_content;
 }				t_ray;
 
 typedef struct s_cub3d
@@ -132,9 +132,9 @@ void	my_mlx_pixelput(t_cub3d *data, int x, int y, int color);
 void	player_init(t_cub3d *blk, t_player *player);
 
 //Control Functions
-void key_listening(t_cub3d *blk);
-int	clk_act(t_cub3d *blk);
-int	ft_close(t_cub3d *blk);
+void	key_listening(t_cub3d *blk);
+int		clk_act(t_cub3d *blk);
+int		ft_close(t_cub3d *blk);
 
 //Math Functions
 double	degtorad(double degrees);
@@ -142,17 +142,18 @@ double	radtodeg(double radius);
 
 //Draw Functions
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
-void draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1);
+void	draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1);
 void	make_rectangle(t_cub3d *game, t_pos pos[2], int color);
+void	generate3d_projection(t_cub3d *blk);
 
 //Render Functions
-void minimap_render(t_cub3d *blk);
-int render(t_cub3d *blk);
+void	minimap_render(t_cub3d *blk);
+int		render(t_cub3d *blk);
 
 //Move Functions
-int move_player(t_cub3d *blk);
+int		move_player(t_cub3d *blk);
 
 //Ray
-void cast_rays(t_cub3d *blk);
+void	cast_rays(t_cub3d *blk);
 
 #endif

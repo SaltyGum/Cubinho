@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 16:37:56 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/12 18:08:19 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	loop_render(t_cub3d *blk)
 		return (0);
 	cast_rays(blk);
 	minimap_render(blk);
+	generate3d_projection(blk);
 	return (1);
 }
 

@@ -62,24 +62,48 @@ void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
 	}
 }
 
-void	generate3d_projection(t_cube *blk)
+void	generate3d_projection(t_cub3d *blk)
+{
+	float	perpDistance;
+	float	distanceProjPlane;
+	float	projectedWallHeight;
+	int		wallStripHeight;
+	int		wallTopPixel;
+	int		y;
+	int		wallBottomPixel;
+	int		i;
+
+	i = 0;
+	while (i < NB_OF_RAYS)
 	{
-	for (int i = 0; i < NUM_RAYS; i++) {
-		float perpDistance = rays[i].distance * cos(rays[i].rayAngle - player.rotationAngle);
-		float distanceProjPlane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
-		float projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
+		perpDistance = blk->ray[i].distance * cos(blk->ray[i].ray_angle - blk->player.rotation_angle);
+		distanceProjPlane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
+		projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
+		wallStripHeight = (int)projectedWallHeight;
+		wallTopPixel = (HEIGHT / 2) - (wallStripHeight / 2);
 
-		int wallStripHeight = (int)projectedWallHeight;
-
-		int wallTopPixel = (WINDOW_HEIGHT / 2) - (wallStripHeight / 2);
-		wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
-
-		int wallBottomPixel = (WINDOW_HEIGHT / 2) + (wallStripHeight / 2);
-		wallBottomPixel = wallBottomPixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wallBottomPixel;
-
+		if (wallTopPixel < 0)
+			wallTopPixel = 0;
+		else
+			wallTopPixel = wallTopPixel;
+		wallBottomPixel = (HEIGHT / 2) + (wallStripHeight / 2);
+		if	(wallBottomPixel > HEIGHT)
+			wallBottomPixel = HEIGHT;
+		else
+			wallBottomPixel = wallBottomPixel;
+		// wallBottomPixel = wallBottomPixel > HEIGHT ? HEIGHT : wallBottomPixel;
 		// render the wall from wallTopPixel to wallBottomPixel
-		for (int y = wallTopPixel; y < wallBottomPixel; y++) {
-			colorBuffer[(WINDOW_WIDTH * y) + i] = rays[i].wasHitVertical ? 0xFFFFFFFF : 0xFFCCCCCC;
+		y = wallTopPixel;
+		while (y < wallBottomPixel)
+		{
+			if (!blk->ray[i].is_hit_vertical)
+				my_mlx_pixelput(blk, wallBottomPixel, y, 0xFFFFFFFF);
+			else
+				my_mlx_pixelput(blk, wallBottomPixel, y, 0xFFCCCCCC);
+			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
+			y++;
 		}
+		i++;
 	}
+	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
 }
