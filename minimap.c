@@ -6,7 +6,7 @@
 /*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 17:11:20 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/12 17:24:29 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,50 +109,56 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 
 	ray_angle = norm_angle(ray_angle);
 	ray_face_down = ray_angle > 0 && ray_angle < PI;
-	ray_face_up =  !ray_face_down;
+	ray_face_up = !ray_face_down;
 	ray_face_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;
 	ray_face_left = !ray_face_right;
 
 	//VERIFICAR GRID HORIZONTAL
 
-	int		hor_wall_hit = FALSE;
-	float	hor_wall_hit_x = 0;
-	float	hor_wall_hit_y = 0;
+	int		hor_wall_hit;
+	float	hor_wall_hit_x;
+	float	hor_wall_hit_y;
 	//int hor_wall_content = 0;
 
+	hor_wall_hit = FALSE;
+	hor_wall_hit_x = 0;
+	hor_wall_hit_y = 0;
+	//hor_wall_content = 0;
 	yintercept = floor(blk->player.y / TILE_SIZE) * TILE_SIZE;
-	if(ray_face_down)
+	if (ray_face_down)
 		yintercept += TILE_SIZE;
-
 	xintercept = blk->player.x + (yintercept - blk->player.y) / tan(ray_angle);
-
 	ystep = TILE_SIZE;
-	if(ray_face_up)
+	if (ray_face_up)
 		ystep *= -1;
 	else
 		ystep *= 1;
-
 	xstep = TILE_SIZE / tan(ray_angle);
-	if(ray_face_left && xstep > 0)
+	if (ray_face_left && xstep > 0)
+		xstep *= -1;
+	else
+		ystep *= 1;
+	if (ray_face_right && xstep < 0)
 		xstep *= -1;
 	else
 		ystep *= 1;
 
-	if(ray_face_right && xstep < 0)
-		xstep *= -1;
-	else
-		ystep *= 1;
+	float	next_hor_touch_x = xintercept;
+	float	next_hor_touch_y = yintercept;
+	float	x_to_check;
+	float	y_to_check;
 
-	float next_hor_touch_x = xintercept;
-	float next_hor_touch_y = yintercept;
-
-	while (next_hor_touch_x >= 0 && next_hor_touch_x <= blk->map->map.width * TILE_SIZE && next_hor_touch_y >= 0 && next_hor_touch_y <= blk->map->map.height * TILE_SIZE) {
-		float	x_to_check = next_hor_touch_x;
-		float	y_to_check = next_hor_touch_y;
-		if(ray_face_up)
+	while (next_hor_touch_x >= 0
+		&& next_hor_touch_x <= blk->map->map.width * TILE_SIZE
+		&& next_hor_touch_y >= 0
+		&& next_hor_touch_y <= blk->map->map.height * TILE_SIZE)
+	{
+		x_to_check = next_hor_touch_x;
+		y_to_check = next_hor_touch_y;
+		if (ray_face_up)
 			y_to_check -= 1;
-
-		if (is_a_wall(blk, x_to_check, y_to_check)) {
+		if (is_a_wall(blk, x_to_check, y_to_check))
+		{
 			// found a wall hit
 			hor_wall_hit_x = next_hor_touch_x;
 			hor_wall_hit_y = next_hor_touch_y;
@@ -160,35 +166,33 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 			hor_wall_hit = TRUE;
 			break ;
 		}
-		else {
+		else
+		{
 			next_hor_touch_x += xstep;
 			next_hor_touch_y += ystep;
 		}
 	}
 // VERTICAL GRID COLISION
-	int vert_wall_hit = FALSE;
-	float vert_wall_hit_x = 0;
-	float vert_wall_hit_y = 0;
+	int		vert_wall_hit = FALSE;
+	float	vert_wall_hit_x = 0;
+	float	vert_wall_hit_y = 0;
 	//int vert_wall_content = 0;
 
 	xintercept = floor(blk->player.x / TILE_SIZE) * TILE_SIZE;
-	if(ray_face_right)
+	if (ray_face_right)
 		xintercept += TILE_SIZE;
-
 	yintercept = blk->player.y + (xintercept - blk->player.x) * tan(ray_angle);
-
 	xstep = TILE_SIZE;
-	if(ray_face_left)
+	if (ray_face_left)
 		xstep *= -1;
 	else
 		ystep *= 1;
-
 	ystep = TILE_SIZE * tan(ray_angle);
-	if(ray_face_up && ystep > 0)
+	if (ray_face_up && ystep > 0)
 		ystep *= -1;
 	else
 		ystep *= 1;
-	if(ray_face_down && ystep < 0)
+	if (ray_face_down && ystep < 0)
 		ystep *= -1;
 	else
 		ystep *= 1;
@@ -200,7 +204,7 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 		float	x_to_check = next_vert_touch_x;
 		if (ray_face_left)
 			x_to_check -= 1;
-		float y_to_check = next_vert_touch_y;
+		float	y_to_check = next_vert_touch_y;
 
 		if (is_a_wall(blk, x_to_check, y_to_check)) {
 			// found a wall hit
