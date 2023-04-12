@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/09 09:41:18 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 07:29:40 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@
 
 //WINDOW SIZE
 //# define WIDTH 2000
-#define WIDTH 33 * 32
-# define HEIGHT 14 * 32
+#define WIDTH 1600
+# define HEIGHT 800
+# define MINIMAP_SCALE 1.0
 
 //Ray
-# define NB_OF_RAYS 50
+# define NB_OF_RAYS WIDTH
 
 // BUTTONS SETUP
 // ARROWS
