@@ -6,7 +6,7 @@
 /*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 17:02:24 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/12 17:11:20 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ float	norm_angle(float angle)
 
 float	points_distance(float x1, float y1, float x2, float y2)
 {
-	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
 int	is_a_wall(t_cub3d *blk, float x, float y)
@@ -89,10 +89,8 @@ int	is_a_wall(t_cub3d *blk, float x, float y)
 	map_grid_x = floor(x / TILE_SIZE);
 	map_grid_y = floor(y / TILE_SIZE);
 	if (x < 0 || x > blk->map->map.width * TILE_SIZE
-			|| y < 0 || y > blk->map->map.height * TILE_SIZE) {
+		|| y < 0 || y > blk->map->map.height * TILE_SIZE)
 		return (TRUE);
-	}
-
 	if (blk->map->map.map[map_grid_y][map_grid_x] == '0')
 		return (FALSE);
 	return (TRUE);
@@ -100,21 +98,26 @@ int	is_a_wall(t_cub3d *blk, float x, float y)
 
 void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 {
-	ray_angle = norm_angle(ray_angle);
-	int		ray_face_down = ray_angle > 0 && ray_angle < PI;
-	int		ray_face_up =  !ray_face_down;
-	int		ray_face_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;
-	int		ray_face_left = !ray_face_right;
+	int		ray_face_down;
+	int		ray_face_up;
+	int		ray_face_right;
+	int		ray_face_left;
 	float	xintercept;
 	float	yintercept;
 	float	xstep;
 	float	ystep;
 
+	ray_angle = norm_angle(ray_angle);
+	ray_face_down = ray_angle > 0 && ray_angle < PI;
+	ray_face_up =  !ray_face_down;
+	ray_face_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;
+	ray_face_left = !ray_face_right;
+
 	//VERIFICAR GRID HORIZONTAL
 
-	int hor_wall_hit = FALSE;
-	float hor_wall_hit_x = 0;
-	float hor_wall_hit_y = 0;
+	int		hor_wall_hit = FALSE;
+	float	hor_wall_hit_x = 0;
+	float	hor_wall_hit_y = 0;
 	//int hor_wall_content = 0;
 
 	yintercept = floor(blk->player.y / TILE_SIZE) * TILE_SIZE;
