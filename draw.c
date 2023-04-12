@@ -74,6 +74,7 @@ void	generate3d_projection(t_cub3d *blk)
 	int		i;
 
 	i = 0;
+	mlx_clear_window(blk->mlx ,blk->win);
 	while (i < NB_OF_RAYS)
 	{
 		perpDistance = blk->ray[i].distance * cos(blk->ray[i].ray_angle - blk->player.rotation_angle);
@@ -81,7 +82,6 @@ void	generate3d_projection(t_cub3d *blk)
 		projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
 		wallStripHeight = (int)projectedWallHeight;
 		wallTopPixel = (HEIGHT / 2) - (wallStripHeight / 2);
-
 		if (wallTopPixel < 0)
 			wallTopPixel = 0;
 		else
@@ -96,10 +96,10 @@ void	generate3d_projection(t_cub3d *blk)
 		y = wallTopPixel;
 		while (y < wallBottomPixel)
 		{
-			if (!blk->ray[i].is_hit_vertical)
-				my_mlx_pixelput(blk, wallBottomPixel, y, 0xFFFFFFFF);
+			if (blk->ray[i].is_hit_vertical)
+				my_mlx_pixelput(blk, i, y, 0x00FFFFFF);
 			else
-				my_mlx_pixelput(blk, wallBottomPixel, y, 0xFFCCCCCC);
+				my_mlx_pixelput(blk, i, y, 0x00FF64FF);
 			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
 			y++;
 		}
