@@ -62,10 +62,10 @@ void	draw_player(t_cub3d *blk)
 	draw_rectangle(blk, blk->player.x * MINIMAP_SCALE,
 		blk->player.y * MINIMAP_SCALE, blk->player.width * MINIMAP_SCALE,
 		blk->player.height * MINIMAP_SCALE, 0xf1d2a2);
-	draw_line(blk, blk->player.x * MINIMAP_SCALE,
-		blk->player.y * MINIMAP_SCALE,
-		blk->player.x * MINIMAP_SCALE + cos(blk->player.rotation_angle) * 20,
-		blk->player.y * MINIMAP_SCALE + sin(blk->player.rotation_angle) * 20);
+//	draw_line(blk, blk->player.x * MINIMAP_SCALE,
+//		blk->player.y * MINIMAP_SCALE,
+//		blk->player.x * MINIMAP_SCALE + cos(blk->player.rotation_angle) * 20,
+//		blk->player.y * MINIMAP_SCALE + sin(blk->player.rotation_angle) * 20);
 }
 
 float	norm_angle(float angle)

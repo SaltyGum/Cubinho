@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 18:49:12 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/12 21:14:28 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	loop_render(t_cub3d *blk)
 	if (blk->player.moved == 0)
 		return (0);
 	cast_rays(blk);
-	//minimap_render(blk);
 	generate3d_projection(blk);
+	minimap_render(blk);
 	return (0);
 }
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	blk->player.moved = 1;
 	//loop_render(blk);
 	key_listening(blk);
-	mlx_mouse_hook(blk->win, &clk_act, blk);
+	//mlx_mouse_hook(blk->win, &clk_act, blk);
 	mlx_loop_hook(blk->mlx, &loop_render, blk);
 	mlx_loop(blk->mlx);
 }

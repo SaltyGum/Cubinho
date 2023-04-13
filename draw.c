@@ -67,42 +67,49 @@ void	generate3d_projection(t_cub3d *blk)
 	float	perpDistance;
 	float	distanceProjPlane;
 	float	projectedWallHeight;
-	int		wallStripHeight;
-	int		wallTopPixel;
-	int		y;
-	int		wallBottomPixel;
+	float		wallStripHeight;
+	float		wallTopPixel;
+	float		y;
+	float		wallBottomPixel;
 	int		i;
 
 	i = 0;
-	mlx_clear_window(blk->mlx ,blk->win);
+	//mlx_clear_window(blk->mlx ,blk->win);
 	while (i < NB_OF_RAYS)
 	{
 		perpDistance = blk->ray[i].distance * cos(blk->ray[i].ray_angle - blk->player.rotation_angle);
-		distanceProjPlane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
+		distanceProjPlane = ((float)WIDTH / 2.0) / tan(FOV_ANGLE / 2.0);
 		projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
-		wallStripHeight = (int)projectedWallHeight;
-		wallTopPixel = (HEIGHT / 2) - (wallStripHeight / 2);
+		wallStripHeight = projectedWallHeight;
+		wallTopPixel = ((float)HEIGHT/ 2.0) - (wallStripHeight / 2.0);
 		if (wallTopPixel < 0)
 			wallTopPixel = 0;
-		else
-			wallTopPixel = wallTopPixel;
-		wallBottomPixel = (HEIGHT / 2) + (wallStripHeight / 2);
+
+		wallBottomPixel = ((float)HEIGHT / 2.0) + (wallStripHeight / 2.0);
 		if	(wallBottomPixel > HEIGHT)
-			wallBottomPixel = HEIGHT;
-		else
-			wallBottomPixel = wallBottomPixel;
+			wallBottomPixel = (float)HEIGHT;
+		y = 0;
+		while(y < wallTopPixel)
+		{
+			my_mlx_pixelput(blk, i, y, 0xFF333333);
+			y++;}
 		// wallBottomPixel = wallBottomPixel > HEIGHT ? HEIGHT : wallBottomPixel;
 		// render the wall from wallTopPixel to wallBottomPixel
 		y = wallTopPixel;
 		while (y < wallBottomPixel)
 		{
 			if (blk->ray[i].is_hit_vertical)
-				my_mlx_pixelput(blk, i, y, 0x00FFFFFF);
+				my_mlx_pixelput(blk, i, y, 0xFF00FF00);
 			else
-				my_mlx_pixelput(blk, i, y, 0x00FF64FF);
+				my_mlx_pixelput(blk, i, y, 0xFFCCCCCC);
 			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
 			y++;
 		}
+		y = wallBottomPixel;
+		while(y < HEIGHT)
+		{
+			my_mlx_pixelput(blk, i, y, 0xFF777777);
+			y++;}
 		i++;
 	}
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);

@@ -24,6 +24,8 @@ typedef struct s_map{
 	size_t	playerpositionx;
 	size_t	playerpositiony;
 	char	direction;
+	int	tile_width;
+	int	tile_height;
 }	t_map;
 
 typedef struct s_parse{

@@ -47,6 +47,8 @@ void set_player_direction(t_parse *parse)
 				parse->map.direction = 'E';
 		}
 	}
+	parse->map.tile_width = parse->map.width * TILE_SIZE;
+	parse->map.tile_height = parse->map.height * TILE_SIZE;
 	set_player_to_zero(parse);
 }
 
