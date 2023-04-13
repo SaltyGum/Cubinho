@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 09:22:51 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 16:36:00 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	my_mlx_pixelput(t_cub3d *data, int x, int y, int color)
 {
 	char	*pixel;
 
-	pixel = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	pixel = data->addr
+		+ (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)pixel = color;
 }

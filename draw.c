@@ -1,35 +1,49 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 14:32:10 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 09:47:34 by jeluiz4          ###   ########.fr       */
-/*                                                                            */
+/*																			  */
+/*														  :::	   ::::::::   */
+/*	 draw.c												:+:		 :+:	:+:   */
+/*													  +:+ +:+		  +:+	  */
+/*	 By: dvargas < dvargas@student.42.rio>			+#+  +:+	   +#+		  */
+/*												  +#+#+#+#+#+	+#+			  */
+/*	 Created: 2023/03/19 14:32:10 by jeluiz4		   #+#	  #+#			  */
+/*	 Updated: 2023/04/12 16:21:37 by jeluiz4		  ###	########.fr		  */
+/*																			  */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
 
-void draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1)
-{
-  int dx = x1 - x0;
-  int dy = y1 - y0;
-  int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-  float x_inc = dx / (float)steps;
-  float y_inc = dy / (float)steps;
-  float x = x0;
-  float y = y0;
+// TO-DO: Colocar essas variaveis no blk pra diminuir isso a norma ta gritando;
+//		  As da chamada da função também só pode ter 4 tem 5;
 
-	int i = 0;
-  while(i <= steps)
-  {
-	my_mlx_pixelput(blk, x, y, 0x0200200);
-    x += x_inc;
-    y += y_inc;
-	i++;
-  }
+void	draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1)
+{
+	int		i;
+	int		dx;
+	int		dy;
+	int		steps;
+	float	x_inc;
+	float	y_inc;
+	float	x;
+	float	y;
+
+	i = 0;
+	dx = x1 - x0;
+	dy = y1 - y0;
+	if (abs(dx) > abs(dy))
+		steps = abs(dx);
+	else
+		steps = abs(dy);
+	y_inc = dy / (float)steps;
+	x_inc = dx / (float)steps;
+	x = x0;
+	y = y0;
+	while (i <= steps)
+	{
+		my_mlx_pixelput(blk, x, y, 0x0200200);
+		x += x_inc;
+		y += y_inc;
+		i++;
+	}
 }
 
 void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
@@ -48,29 +62,55 @@ void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
 	}
 }
 
-void	generate3DProjection(t_cub3d *blk) {
-    for (int i = 0; i < NB_OF_RAYS; i++) {
-        float perpDistance = blk->ray[i].distance * cos(blk->ray[i].ray_angle - blk->player.rotation_angle);
-        float distanceProjPlane = (WIDTH / 2) / tan(FOV_ANGLE / 2);
-        float projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
+void	generate3d_projection(t_cub3d *blk)
+{
+	float	perpDistance;
+	float	distanceProjPlane;
+	float	projectedWallHeight;
+	float		wallStripHeight;
+	float		wallTopPixel;
+	float		y;
+	float		wallBottomPixel;
+	int		i;
 
-        int wallStripHeight = (int)projectedWallHeight;
+	i = 0;
+	//mlx_clear_window(blk->mlx ,blk->win);
+	while (i < NB_OF_RAYS)
+	{
+		perpDistance = blk->ray[i].distance * cos(blk->ray[i].ray_angle - blk->player.rotation_angle);
+		distanceProjPlane = ((float)WIDTH / 2.0) / tan(FOV_ANGLE / 2.0);
+		projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
+		wallStripHeight = projectedWallHeight;
+		wallTopPixel = ((float)HEIGHT/ 2.0) - (wallStripHeight / 2.0);
+		if (wallTopPixel < 0)
+			wallTopPixel = 0;
 
-        int wallTopPixel = (HEIGHT / 2) - (wallStripHeight / 2);
-        wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
-
-        int wallBottomPixel = (HEIGHT / 2) + (wallStripHeight / 2);
-
+		wallBottomPixel = ((float)HEIGHT / 2.0) + (wallStripHeight / 2.0);
 		if	(wallBottomPixel > HEIGHT)
-			wallBottomPixel = HEIGHT;
-		//wallBottomPixel = wallBottomPixel > HEIGHT ? HEIGHT : wallBottomPixel;
-        // render the wall from wallTopPixel to wallBottomPixel
-        for (int y = wallTopPixel; y < wallBottomPixel; y++) {
+			wallBottomPixel = (float)HEIGHT;
+		y = 0;
+		while(y < wallTopPixel)
+		{
+			my_mlx_pixelput(blk, i, y, 0xFF333333);
+			y++;}
+		// wallBottomPixel = wallBottomPixel > HEIGHT ? HEIGHT : wallBottomPixel;
+		// render the wall from wallTopPixel to wallBottomPixel
+		y = wallTopPixel;
+		while (y < wallBottomPixel)
+		{
 			if (blk->ray[i].is_hit_vertical)
-				my_mlx_pixelput(blk, wallBottomPixel, wallTopPixel, 0xFFFFFFFF);
+				my_mlx_pixelput(blk, i, y, 0xFF00FF00);
 			else
-            	my_mlx_pixelput(blk, wallBottomPixel, wallTopPixel, 0xFFCCCCCC);
+				my_mlx_pixelput(blk, i, y, 0xFFCCCCCC);
 			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
-        }
-    }
+			y++;
+		}
+		y = wallBottomPixel;
+		while(y < HEIGHT)
+		{
+			my_mlx_pixelput(blk, i, y, 0xFF777777);
+			y++;}
+		i++;
+	}
+	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
 }

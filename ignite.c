@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/08 17:46:28 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/12 16:28:56 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lib_cub3d.h"
+#include "lib_cub3d.h"
 
 float	set_direction(char c)
 {
@@ -19,9 +19,9 @@ float	set_direction(char c)
 	if (c == 'S')
 		return (PI / 2);
 	if (c == 'W')
-		return(PI);
+		return (PI);
 	if (c == 'E')
-		return(PI * 2);
+		return (PI * 2);
 	return (0);
 }
 

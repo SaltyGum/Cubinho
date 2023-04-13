@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 09:42:47 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/12 21:14:28 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	loop_render(t_cub3d *blk)
 	if (blk->player.moved == 0)
 		return (0);
 	cast_rays(blk);
+	generate3d_projection(blk);
 	minimap_render(blk);
-	generate3DProjection(blk);
-	return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -41,12 +41,12 @@ int	main(int argc, char **argv)
 	blk->mlx = mlx_init();
 	blk->win = mlx_new_window(blk->mlx, WIDTH, HEIGHT, "CUB3D");
 	blk->img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
-	blk->addr = mlx_get_data_addr(blk->img, &blk->bits_per_pixel,
-			&blk->line_length, &blk->endian);
+	blk->addr = mlx_get_data_addr(blk->img,
+			&blk->bits_per_pixel, &blk->line_length, &blk->endian);
 	blk->player.moved = 1;
-	loop_render(blk);
+	//loop_render(blk);
 	key_listening(blk);
-	mlx_mouse_hook(blk->win, &clk_act, blk);
+	//mlx_mouse_hook(blk->win, &clk_act, blk);
 	mlx_loop_hook(blk->mlx, &loop_render, blk);
 	mlx_loop(blk->mlx);
 }
