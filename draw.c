@@ -62,6 +62,47 @@ void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
 	}
 }
 
+int    create_trgb(int t,int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	draw_sprite(t_cub3d *blk, int top, int bot)
+{
+	t_sprite	nw;
+	int	i = 0, j = 0, x = HEIGHT, posx = 0, p = 0;;
+
+	//void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)
+	nw.img = mlx_xpm_file_to_image(blk->mlx, "/home/saltygum/Área de trabalho/uniao.xmp", &top, &x);
+	nw.addr = mlx_get_data_addr(nw.img, &nw.bits_per_pixel, &nw.line_length, &nw.endian);
+	while (i < x)
+	{
+		posx = 0;
+		p = 0;
+		while (j < top)
+		{
+			if (nw.endian == 1)
+			{
+				nw.color->t = (int)nw.addr[(i * nw.line_length) + p];
+				nw.color->r = (int)nw.addr[(i * nw.line_length) + p + 1];
+				nw.color->g = (int)nw.addr[(i * nw.line_length) + p + 2];
+				nw.color->b = (int)nw.addr[(i * nw.line_length) + p + 3];
+			}
+			else
+			{
+				nw.color->t = (int)nw.addr[(i * nw.line_length) + p + 3];
+				nw.color->r = (int)nw.addr[(i * nw.line_length) + p + 2];
+				nw.color->g = (int)nw.addr[(i * nw.line_length) + p + 1];
+				nw.color->b = (int)nw.addr[(i * nw.line_length) + p];
+			}
+			my_mlx_pixelput(blk->img, posx, i, create_trgb(nw.color->t, nw.color->r, nw.color->g, nw.color->b));
+			posx++;
+			p+=4;
+		}
+		i++;
+	}
+}
+
 void	generate3d_projection(t_cub3d *blk)
 {
 	float	perpDistance;
@@ -106,11 +147,14 @@ void	generate3d_projection(t_cub3d *blk)
 			y++;
 		}
 		y = wallBottomPixel;
-		while(y < HEIGHT)
-		{
-			my_mlx_pixelput(blk, i, y, 0xFF777777);
-			y++;}
+		/*while(y < HEIGHT)
+		  {
+		  my_mlx_pixelput(blk, i, y, 0xFF777777);
+		  y++;}
+		 */
+
 		i++;
 	}
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
+	draw_sprite(blk, y, i);
 }

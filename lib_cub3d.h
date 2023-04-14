@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 21:33:09 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:21:39 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 
 // MAP
 # define TILE_SIZE (32)
+
+//MAP SPRITES
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 //WINDOW SIZE
 //# define WIDTH 2000
@@ -119,6 +123,25 @@ typedef struct s_cub3d
 	int		line_length;
 	int		endian;
 }				t_cub3d;
+
+typedef struct s_color
+{
+	int		t;
+	int		r;
+	int		g;
+	int		b;
+	int		trgb;
+}				t_color;
+
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	t_color	*color;
+}				t_sprite;
 
 typedef struct s_pos{
 	double x;
