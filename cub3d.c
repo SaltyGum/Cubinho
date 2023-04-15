@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 21:14:28 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/15 07:51:31 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char **argv)
 	blk->img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
 	blk->addr = mlx_get_data_addr(blk->img,
 			&blk->bits_per_pixel, &blk->line_length, &blk->endian);
+	init_textures(blk);
 	blk->player.moved = 1;
 	//loop_render(blk);
 	key_listening(blk);
