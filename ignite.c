@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 16:28:56 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/15 07:54:30 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,33 @@ float	set_direction(char c)
 	return (0);
 }
 
+t_img *init_texture_image(t_cub3d *blk, char *texture)
+{
+	t_img *tmp;
+
+	tmp = ft_calloc(sizeof(t_img), 1);
+	tmp->img = NULL;
+	tmp->addr = NULL;
+	tmp->width = 0;
+	tmp->height = 0;
+	tmp->pixel_bits = 32;
+	tmp->size_line = blk->textureimg->width * (tmp->pixel_bits / 8);
+	tmp->endian = 0;
+
+	tmp->img = mlx_xpm_file_to_image(blk->mlx, texture, &tmp->width, &tmp->height);
+	tmp->addr = (int *)mlx_get_data_addr(tmp->img, &tmp->pixel_bits, &tmp->size_line, &tmp->endian);
+	return(tmp);
+}
+
+void	init_textures(t_cub3d *blk)
+{
+	blk->textureimg[0] = *init_texture_image(blk, blk->map->no_texture);
+	blk->textureimg[1] = *init_texture_image(blk, blk->map->so_texture);
+	blk->textureimg[2] = *init_texture_image(blk, blk->map->ea_texture);
+	blk->textureimg[3] = *init_texture_image(blk, blk->map->we_texture);
+}
+
+
 void	player_init(t_cub3d *blk, t_player *player)
 {
 	player->x = (blk->map->map.playerpositionx) * TILE_SIZE;
@@ -37,4 +64,5 @@ void	player_init(t_cub3d *blk, t_player *player)
 	player->turn_direction = 0;
 	player->walk_direction = 0;
 	player->moved = 0;
+	//init_textures(blk);
 }

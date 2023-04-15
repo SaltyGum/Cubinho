@@ -1,7 +1,7 @@
-NO ./maps/BRICK_3E.png
-SO ./maps/CONSOLE_1A.png
-WE ./maps/FLOOR_2F.png
-EA ./maps/LAB_1C.png
+NO maps/HEDGE_1B.xpm
+SO maps/BRICK_3D.xpm
+WE maps/HEDGE_1A.xpm
+EA maps/BRICK_3E.xpm
 
 F 20,22,25
 C 20,14,15

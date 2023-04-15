@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 21:33:09 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/15 07:51:51 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,21 @@
 //VIEW VALUE == 60 * (PI / 180.0)
 # define FOV_ANGLE (1.04719755119)
 
+//TEXTURE
+# define TEXTURE_HEIGHT 64
+# define TEXTURE_WIDTH 64
+
 // MAP
-# define TILE_SIZE (32)
+# define TILE_SIZE (64)
 
 //WINDOW SIZE
 //# define WIDTH 2000
-# define WIDTH 33 * 32
-# define HEIGHT 14 * 32
+# define WIDTH 33 * 64
+# define HEIGHT 14 * 64
 # define MINIMAP_SCALE 0.2
 
 //Ray
-# define NB_OF_RAYS 1056
+# define NB_OF_RAYS 2112
 
 // BUTTONS SETUP
 // ARROWS
@@ -75,6 +79,17 @@
 // WINDOW CLOSE
 # define ESC_BUT 65307
 # define WIN_X 17
+
+typedef struct s_img
+{
+	void	*img;
+	int 	*addr;
+	int     width;
+	int     height;
+	int		pixel_bits;
+	int		size_line;
+	int		endian;
+}	t_img;
 
 typedef struct s_player
 {
@@ -118,12 +133,17 @@ typedef struct s_cub3d
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	t_img	textureimg[4];
+
 }				t_cub3d;
 
 typedef struct s_pos{
 	double x;
 	double y;
 } t_pos;
+
+
+void	init_textures(t_cub3d *blk);
 
 //utils
 void	my_mlx_pixelput(t_cub3d *data, int x, int y, int color);
