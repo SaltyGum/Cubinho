@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/15 07:54:30 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/16 07:14:33 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_img *init_texture_image(t_cub3d *blk, char *texture)
 
 void	init_textures(t_cub3d *blk)
 {
-	blk->textureimg[0] = *init_texture_image(blk, blk->map->no_texture);
-	blk->textureimg[1] = *init_texture_image(blk, blk->map->so_texture);
-	blk->textureimg[2] = *init_texture_image(blk, blk->map->ea_texture);
-	blk->textureimg[3] = *init_texture_image(blk, blk->map->we_texture);
+	blk->textureimg[NO] = *init_texture_image(blk, blk->map->no_texture);
+	blk->textureimg[SO] = *init_texture_image(blk, blk->map->so_texture);
+	blk->textureimg[WE] = *init_texture_image(blk, blk->map->we_texture);
+	blk->textureimg[EA] = *init_texture_image(blk, blk->map->ea_texture);
 }
 
 

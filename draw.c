@@ -108,16 +108,26 @@ void	generate3d_projection(t_cub3d *blk)
 		while (y < wallBottomPixel)
 		{
 			int distanceFromTop = y + (wallStripHeight / 2) - (HEIGHT / 2);
-            int textureOffsetY = distanceFromTop * ((float)TEXTURE_HEIGHT / wallStripHeight);
+			int textureOffsetY = distanceFromTop * ((float)TEXTURE_HEIGHT / wallStripHeight);
 			u_int32_t texelColor;
-			if (blk->ray[i].is_hit_vertical)
+			if (blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_right)
 			{
-				texelColor = blk->textureimg[2].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
+				texelColor = blk->textureimg[WE].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
 				my_mlx_pixelput(blk, i, y, texelColor);
 			}
-			else
+			else if (blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_left)
 			{
-				texelColor = blk->textureimg[1].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
+				texelColor = blk->textureimg[EA].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
+				my_mlx_pixelput(blk, i, y, texelColor);
+			}
+			else if(!blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_up)
+			{
+				texelColor = blk->textureimg[NO].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
+				my_mlx_pixelput(blk, i, y, texelColor);
+			}
+			else if(!blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_down)
+			{
+				texelColor = blk->textureimg[SO].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
 				my_mlx_pixelput(blk, i, y, texelColor);
 			}
 			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
