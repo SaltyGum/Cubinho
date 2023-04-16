@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/16 10:02:10 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/16 12:10:05 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ float	set_direction(char c)
 	return (0);
 }
 
-t_img *init_texture_image(t_cub3d *blk, char *texture)
+t_img	*init_texture_image(t_cub3d *blk, char *texture)
 {
-	t_img *tmp;
+	t_img	*tmp;
 
 	tmp = ft_calloc(sizeof(t_img), 1);
 	tmp->img = NULL;
@@ -37,12 +37,13 @@ t_img *init_texture_image(t_cub3d *blk, char *texture)
 	tmp->pixel_bits = 32;
 	tmp->size_line = blk->textureimg->width * (tmp->pixel_bits / 8);
 	tmp->endian = 0;
-
-	tmp->img = mlx_xpm_file_to_image(blk->mlx, texture, &tmp->width, &tmp->height);
+	tmp->img = mlx_xpm_file_to_image(blk->mlx,
+			texture, &tmp->width, &tmp->height);
 	if (tmp->img == NULL || tmp->width != 64 || tmp->height != 64)
 		printf("This map has broken images!!\n");
-	tmp->addr = (int *)mlx_get_data_addr(tmp->img, &tmp->pixel_bits, &tmp->size_line, &tmp->endian);
-	return(tmp);
+	tmp->addr = (int *)mlx_get_data_addr(tmp->img,
+			&tmp->pixel_bits, &tmp->size_line, &tmp->endian);
+	return (tmp);
 }
 
 void	init_textures(t_cub3d *blk)
@@ -52,7 +53,6 @@ void	init_textures(t_cub3d *blk)
 	blk->textureimg[WE] = *init_texture_image(blk, blk->map->we_texture);
 	blk->textureimg[EA] = *init_texture_image(blk, blk->map->ea_texture);
 }
-
 
 void	player_init(t_cub3d *blk, t_player *player)
 {

@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/16 10:44:57 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/16 12:06:51 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	draw_minimap(t_cub3d *blk)
 		while (j < blk->map->map.width)
 		{
 			if (map[i][j] == '1')
-				draw_rectangle(blk, j * (TILE_SIZE/4) * MINIMAP_SCALE2,
-					i * (TILE_SIZE/4) * MINIMAP_SCALE2, (TILE_SIZE/4) * MINIMAP_SCALE2,
-					(TILE_SIZE/4) * MINIMAP_SCALE2, RED_PIXEL);
+				draw_rectangle(blk, j * (TILE_SIZE / 4) * MINIMAP_SCALE2,
+					i * (TILE_SIZE / 4) * MINIMAP_SCALE2, (TILE_SIZE / 4) * MINIMAP_SCALE2,
+					(TILE_SIZE / 4) * MINIMAP_SCALE2, RED_PIXEL);
 			else if (map[i][j] == '0')
-				draw_rectangle(blk, j * (TILE_SIZE/4) * MINIMAP_SCALE2,
-					i * (TILE_SIZE/4) * MINIMAP_SCALE2, (TILE_SIZE/4) * MINIMAP_SCALE2,
-					(TILE_SIZE/4) * MINIMAP_SCALE2, WHITE_PIXEL);
+				draw_rectangle(blk, j * (TILE_SIZE / 4) * MINIMAP_SCALE2,
+					i * (TILE_SIZE / 4) * MINIMAP_SCALE2, (TILE_SIZE / 4) * MINIMAP_SCALE2,
+					(TILE_SIZE / 4) * MINIMAP_SCALE2, WHITE_PIXEL);
 			else
-				draw_rectangle(blk, j * (TILE_SIZE/4) * MINIMAP_SCALE2,
-					i * (TILE_SIZE/4) * MINIMAP_SCALE2, (TILE_SIZE/4) * MINIMAP_SCALE2,
-					(TILE_SIZE/4) * MINIMAP_SCALE2, GREY_PIXEL);
+				draw_rectangle(blk, j * (TILE_SIZE / 4) * MINIMAP_SCALE2,
+					i * (TILE_SIZE / 4) * MINIMAP_SCALE2, (TILE_SIZE / 4) * MINIMAP_SCALE2,
+					(TILE_SIZE / 4) * MINIMAP_SCALE2, GREY_PIXEL);
 			j++;
 		}
 		i++;
@@ -108,9 +108,9 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 	float	ystep;
 
 	ray_angle = norm_angle(ray_angle);
-	ray_face_down = ray_angle > 0 && ray_angle < PI;
+	ray_face_down = ray_angle > 0 && ray_angle < PI;// Norminete ta bugando aqui
 	ray_face_up = !ray_face_down;
-	ray_face_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;
+	ray_face_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;// E Aqui buga tambem
 	ray_face_left = !ray_face_right;
 
 	//VERIFICAR GRID HORIZONTAL
@@ -143,10 +143,13 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 	else
 		ystep *= 1;
 
-	float	next_hor_touch_x = xintercept;
-	float	next_hor_touch_y = yintercept;
+	float	next_hor_touch_x;
+	float	next_hor_touch_y;
 	float	x_to_check;
 	float	y_to_check;
+
+	next_hor_touch_x = xintercept;
+	next_hor_touch_y = yintercept;
 
 	while (next_hor_touch_x >= 0
 		&& next_hor_touch_x <= blk->map->map.width * TILE_SIZE
@@ -173,10 +176,14 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 		}
 	}
 // VERTICAL GRID COLISION
-	int		vert_wall_hit = FALSE;
-	float	vert_wall_hit_x = 0;
-	float	vert_wall_hit_y = 0;
+	int		vert_wall_hit;
+	float	vert_wall_hit_x;
+	float	vert_wall_hit_y;
 	//int vert_wall_content = 0;
+
+	vert_wall_hit = FALSE;
+	vert_wall_hit_x = 0;
+	vert_wall_hit_y = 0;
 
 	xintercept = floor(blk->player.x / TILE_SIZE) * TILE_SIZE;
 	if (ray_face_right)
@@ -197,16 +204,26 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 	else
 		ystep *= 1;
 
-	float	next_vert_touch_x = xintercept;
-	float	next_vert_touch_y = yintercept;
+	float	next_vert_touch_x;
+	float	next_vert_touch_y;
 
-	while (next_vert_touch_x >= 0 && next_vert_touch_x <= blk->map->map.width * TILE_SIZE && next_vert_touch_y >= 0 && next_vert_touch_y <= blk->map->map.height * TILE_SIZE) {
-		float	x_to_check = next_vert_touch_x;
+	next_vert_touch_x = xintercept;
+	next_vert_touch_y = yintercept;
+
+	while (next_vert_touch_x >= 0 && next_vert_touch_x
+		<= blk->map->map.width * TILE_SIZE && next_vert_touch_y
+		>= 0 && next_vert_touch_y <= blk->map->map.height * TILE_SIZE)
+	{
+		float	x_to_check;
+		float	y_to_check;
+
+		x_to_check = next_vert_touch_x;
+		y_to_check = next_vert_touch_y;
+
 		if (ray_face_left)
 			x_to_check -= 1;
-		float	y_to_check = next_vert_touch_y;
-
-		if (is_a_wall(blk, x_to_check, y_to_check)) {
+		if (is_a_wall(blk, x_to_check, y_to_check))
+		{
 			// found a wall hit
 			vert_wall_hit_x = next_vert_touch_x;
 			vert_wall_hit_y = next_vert_touch_y;
@@ -214,7 +231,8 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 			vert_wall_hit = TRUE;
 			break ;
 		}
-		else {
+		else
+		{
 			next_vert_touch_x += xstep;
 			next_vert_touch_y += ystep;
 		}
@@ -222,14 +240,14 @@ void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
 	//Calcular e escolher qual hit vamos escolher
 	float	hor_hit_distance;
 	float	ver_hit_distance;
-	if(hor_wall_hit == TRUE)
+	if (hor_wall_hit == TRUE)
 		hor_hit_distance = points_distance(blk->player.x,
-			blk->player.y, hor_wall_hit_x, hor_wall_hit_y);
+				blk->player.y, hor_wall_hit_x, hor_wall_hit_y);
 	else
 		hor_hit_distance = __FLT_MAX__;
 	if (vert_wall_hit == TRUE)
 		ver_hit_distance = points_distance(blk->player.x,
-			blk->player.y, vert_wall_hit_x, vert_wall_hit_y);
+				blk->player.y, vert_wall_hit_x, vert_wall_hit_y);
 	else
 		ver_hit_distance = __FLT_MAX__;
 	if (ver_hit_distance < hor_hit_distance)
