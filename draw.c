@@ -92,7 +92,7 @@ void	generate3d_projection(t_cub3d *blk)
 		y = 0;
 		while(y < wallTopPixel)
 		{
-			my_mlx_pixelput(blk, i, y, 0xFF87CEFA);
+			my_mlx_pixelput(blk, i, y, blk->map->ceil);
 			y++;}
 
 		int textureOffsetX;
@@ -133,13 +133,11 @@ void	generate3d_projection(t_cub3d *blk)
 			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
 			y++;
 		}
-
-
 		//Floor Color
 		y = wallBottomPixel;
 		while(y < HEIGHT)
 		{
-			my_mlx_pixelput(blk, i, y, 0xFFF4A460);
+			my_mlx_pixelput(blk, i, y, blk->map->floor);
 			y++;}
 		i++;
 	}
