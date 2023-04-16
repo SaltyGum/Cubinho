@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/15 07:51:51 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/16 07:14:31 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@
 // WINDOW CLOSE
 # define ESC_BUT 65307
 # define WIN_X 17
+
+//rosa dos ventos
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
 
 typedef struct s_img
 {
