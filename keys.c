@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:00:28 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/12 16:34:59 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/16 09:48:49 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	key_press_handle(int key, t_cub3d *blk)
 		blk->player.walk_direction += 1;
 	else if (key == ARROW_DOWN)
 		blk->player.walk_direction -= 1;
-	else if (key == ARROW_LEFT)
-		blk->player.turn_direction += 1;
 	else if (key == ARROW_RIGHT)
+		blk->player.turn_direction += 1;
+	else if (key == ARROW_LEFT)
 		blk->player.turn_direction -= 1;
 	else if (key == A)
 		print_player_status(blk);

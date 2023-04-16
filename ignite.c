@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/16 07:33:59 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/16 09:53:53 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ float	set_direction(char c)
 	if (c == 'W')
 		return (PI);
 	if (c == 'E')
-		return (PI * 2);
+		return (0);
 	return (0);
 }
 
