@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/16 07:14:31 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/16 10:56:34 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@
 # define TILE_SIZE (64)
 
 //WINDOW SIZE
-//# define WIDTH 2000
-# define WIDTH 33 * 64
-# define HEIGHT 14 * 64
-# define MINIMAP_SCALE 0.2
+# define WIDTH 1024
+# define HEIGHT 720
+
+# define MINIMAP_SCALE 0.125
+# define MINIMAP_SCALE2 0.5
 
 //Ray
-# define NB_OF_RAYS 2112
+# define NB_OF_RAYS (WIDTH)
 
 // BUTTONS SETUP
 // ARROWS

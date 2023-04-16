@@ -1,11 +1,29 @@
-NO ./maps/BRICK_3E.png
-SO ./maps/CONSOLE_1A.png
-WE ./maps/FLOOR_2F.png
-EA ./maps/LAB_1C.png
+
+
+
+
+SO ./maps/uniao.xpm
+
+
+
+NO ./maps/BRICK_3D.xpm
+
+
+WE ./maps/HEDGE_1B.xpm
+
+
+
+
 
 F 20,22,25
+
+
+
+
 C 20,11,20
 
+EA ./maps/HEDGE_1A.xpm
+
 11111
-100E1
+100E01
 11111

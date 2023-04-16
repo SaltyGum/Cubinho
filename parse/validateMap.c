@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:41:12 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/08 17:21:55 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/16 11:19:42 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ int	validate_map(t_parse parse)
 	int		x;
 	int		y;
 
-	x = parse.map.playerpositionx;
-	y = parse.map.playerpositiony;
+	x = parse.map.playerpositionx + 1;
+	y = parse.map.playerpositiony + 1;
 	to_valid = fill_map(parse);
 	if (!to_valid)
 		return (1);

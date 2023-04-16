@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/16 07:34:00 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/16 10:44:57 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	draw_minimap(t_cub3d *blk)
 		while (j < blk->map->map.width)
 		{
 			if (map[i][j] == '1')
-				draw_rectangle(blk, j * TILE_SIZE * MINIMAP_SCALE,
-					i * TILE_SIZE * MINIMAP_SCALE, TILE_SIZE * MINIMAP_SCALE,
-					TILE_SIZE * MINIMAP_SCALE, RED_PIXEL);
+				draw_rectangle(blk, j * (TILE_SIZE/4) * MINIMAP_SCALE2,
+					i * (TILE_SIZE/4) * MINIMAP_SCALE2, (TILE_SIZE/4) * MINIMAP_SCALE2,
+					(TILE_SIZE/4) * MINIMAP_SCALE2, RED_PIXEL);
 			else if (map[i][j] == '0')
-				draw_rectangle(blk, j * TILE_SIZE * MINIMAP_SCALE,
-					i * TILE_SIZE * MINIMAP_SCALE, TILE_SIZE * MINIMAP_SCALE,
-					TILE_SIZE * MINIMAP_SCALE, WHITE_PIXEL);
+				draw_rectangle(blk, j * (TILE_SIZE/4) * MINIMAP_SCALE2,
+					i * (TILE_SIZE/4) * MINIMAP_SCALE2, (TILE_SIZE/4) * MINIMAP_SCALE2,
+					(TILE_SIZE/4) * MINIMAP_SCALE2, WHITE_PIXEL);
 			else
-				draw_rectangle(blk, j * TILE_SIZE * MINIMAP_SCALE,
-					i * TILE_SIZE * MINIMAP_SCALE, TILE_SIZE * MINIMAP_SCALE,
-					TILE_SIZE * MINIMAP_SCALE, GREY_PIXEL);
+				draw_rectangle(blk, j * (TILE_SIZE/4) * MINIMAP_SCALE2,
+					i * (TILE_SIZE/4) * MINIMAP_SCALE2, (TILE_SIZE/4) * MINIMAP_SCALE2,
+					(TILE_SIZE/4) * MINIMAP_SCALE2, GREY_PIXEL);
 			j++;
 		}
 		i++;
