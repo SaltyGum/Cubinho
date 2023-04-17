@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/16 12:06:51 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 07:34:41 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,6 @@ void	draw_player(t_cub3d *blk)
 //		blk->player.y * MINIMAP_SCALE + sin(blk->player.rotation_angle) * 20);
 }
 
-float	norm_angle(float angle)
-{
-	angle = remainder(angle, TWO_PI);
-	if (angle < 0)
-		angle = TWO_PI + angle;
-	return (angle);
-}
-
-float	points_distance(float x1, float y1, float x2, float y2)
-{
-	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
-}
-
 int	is_a_wall(t_cub3d *blk, float x, float y)
 {
 	int	map_grid_x;
@@ -94,183 +81,6 @@ int	is_a_wall(t_cub3d *blk, float x, float y)
 	if (blk->map->map.map[map_grid_y][map_grid_x] == '0')
 		return (FALSE);
 	return (TRUE);
-}
-
-void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id)
-{
-	int		ray_face_down;
-	int		ray_face_up;
-	int		ray_face_right;
-	int		ray_face_left;
-	float	xintercept;
-	float	yintercept;
-	float	xstep;
-	float	ystep;
-
-	ray_angle = norm_angle(ray_angle);
-	ray_face_down = ray_angle > 0 && ray_angle < PI;// Norminete ta bugando aqui
-	ray_face_up = !ray_face_down;
-	ray_face_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;// E Aqui buga tambem
-	ray_face_left = !ray_face_right;
-
-	//VERIFICAR GRID HORIZONTAL
-
-	int		hor_wall_hit;
-	float	hor_wall_hit_x;
-	float	hor_wall_hit_y;
-	//int hor_wall_content = 0;
-
-	hor_wall_hit = FALSE;
-	hor_wall_hit_x = 0;
-	hor_wall_hit_y = 0;
-	//hor_wall_content = 0;
-	yintercept = floor(blk->player.y / TILE_SIZE) * TILE_SIZE;
-	if (ray_face_down)
-		yintercept += TILE_SIZE;
-	xintercept = blk->player.x + (yintercept - blk->player.y) / tan(ray_angle);
-	ystep = TILE_SIZE;
-	if (ray_face_up)
-		ystep *= -1;
-	else
-		ystep *= 1;
-	xstep = TILE_SIZE / tan(ray_angle);
-	if (ray_face_left && xstep > 0)
-		xstep *= -1;
-	else
-		ystep *= 1;
-	if (ray_face_right && xstep < 0)
-		xstep *= -1;
-	else
-		ystep *= 1;
-
-	float	next_hor_touch_x;
-	float	next_hor_touch_y;
-	float	x_to_check;
-	float	y_to_check;
-
-	next_hor_touch_x = xintercept;
-	next_hor_touch_y = yintercept;
-
-	while (next_hor_touch_x >= 0
-		&& next_hor_touch_x <= blk->map->map.width * TILE_SIZE
-		&& next_hor_touch_y >= 0
-		&& next_hor_touch_y <= blk->map->map.height * TILE_SIZE)
-	{
-		x_to_check = next_hor_touch_x;
-		y_to_check = next_hor_touch_y;
-		if (ray_face_up)
-			y_to_check -= 1;
-		if (is_a_wall(blk, x_to_check, y_to_check))
-		{
-			// found a wall hit
-			hor_wall_hit_x = next_hor_touch_x;
-			hor_wall_hit_y = next_hor_touch_y;
-			//hor_wall_content = blk->map->map.map[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
-			hor_wall_hit = TRUE;
-			break ;
-		}
-		else
-		{
-			next_hor_touch_x += xstep;
-			next_hor_touch_y += ystep;
-		}
-	}
-// VERTICAL GRID COLISION
-	int		vert_wall_hit;
-	float	vert_wall_hit_x;
-	float	vert_wall_hit_y;
-	//int vert_wall_content = 0;
-
-	vert_wall_hit = FALSE;
-	vert_wall_hit_x = 0;
-	vert_wall_hit_y = 0;
-
-	xintercept = floor(blk->player.x / TILE_SIZE) * TILE_SIZE;
-	if (ray_face_right)
-		xintercept += TILE_SIZE;
-	yintercept = blk->player.y + (xintercept - blk->player.x) * tan(ray_angle);
-	xstep = TILE_SIZE;
-	if (ray_face_left)
-		xstep *= -1;
-	else
-		ystep *= 1;
-	ystep = TILE_SIZE * tan(ray_angle);
-	if (ray_face_up && ystep > 0)
-		ystep *= -1;
-	else
-		ystep *= 1;
-	if (ray_face_down && ystep < 0)
-		ystep *= -1;
-	else
-		ystep *= 1;
-
-	float	next_vert_touch_x;
-	float	next_vert_touch_y;
-
-	next_vert_touch_x = xintercept;
-	next_vert_touch_y = yintercept;
-
-	while (next_vert_touch_x >= 0 && next_vert_touch_x
-		<= blk->map->map.width * TILE_SIZE && next_vert_touch_y
-		>= 0 && next_vert_touch_y <= blk->map->map.height * TILE_SIZE)
-	{
-		float	x_to_check;
-		float	y_to_check;
-
-		x_to_check = next_vert_touch_x;
-		y_to_check = next_vert_touch_y;
-
-		if (ray_face_left)
-			x_to_check -= 1;
-		if (is_a_wall(blk, x_to_check, y_to_check))
-		{
-			// found a wall hit
-			vert_wall_hit_x = next_vert_touch_x;
-			vert_wall_hit_y = next_vert_touch_y;
-			//vert_wall_content = blk->map->map.map[(int)floor(x_to_check / TILE_SIZE)][(int)floor(y_to_check / TILE_SIZE)];
-			vert_wall_hit = TRUE;
-			break ;
-		}
-		else
-		{
-			next_vert_touch_x += xstep;
-			next_vert_touch_y += ystep;
-		}
-	}
-	//Calcular e escolher qual hit vamos escolher
-	float	hor_hit_distance;
-	float	ver_hit_distance;
-	if (hor_wall_hit == TRUE)
-		hor_hit_distance = points_distance(blk->player.x,
-				blk->player.y, hor_wall_hit_x, hor_wall_hit_y);
-	else
-		hor_hit_distance = __FLT_MAX__;
-	if (vert_wall_hit == TRUE)
-		ver_hit_distance = points_distance(blk->player.x,
-				blk->player.y, vert_wall_hit_x, vert_wall_hit_y);
-	else
-		ver_hit_distance = __FLT_MAX__;
-	if (ver_hit_distance < hor_hit_distance)
-	{
-		blk->ray[ray_id].distance = ver_hit_distance;
-		blk->ray[ray_id].hit_x_wall = vert_wall_hit_x;
-		blk->ray[ray_id].hit_y_wall = vert_wall_hit_y;
-		//blk->ray[ray_id].hit_content = vert_wall_content;
-		blk->ray[ray_id].is_hit_vertical = TRUE;
-	}
-	else
-	{
-		blk->ray[ray_id].distance = hor_hit_distance;
-		blk->ray[ray_id].hit_x_wall = hor_wall_hit_x;
-		blk->ray[ray_id].hit_y_wall = hor_wall_hit_y;
-		//blk->ray[ray_id].hit_content = hor_wall_content;
-		blk->ray[ray_id].is_hit_vertical = FALSE;
-	}
-	blk->ray[ray_id].ray_angle = ray_angle;
-	blk->ray[ray_id].is_ray_face_down = ray_face_down;
-	blk->ray[ray_id].is_ray_face_up = ray_face_up;
-	blk->ray[ray_id].is_ray_face_left = ray_face_left;
-	blk->ray[ray_id].is_ray_face_right = ray_face_right;
 }
 
 void	cast_rays(t_cub3d *blk)

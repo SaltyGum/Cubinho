@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:22:41 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/08 18:49:35 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/17 07:33:13 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void set_player_to_zero(t_parse *parse)
 
 void set_player_direction(t_parse *parse)
 {
-	int x;
-	int y;
+	size_t x;
+	size_t y;
 	char **map;
 
 	x = -1;
