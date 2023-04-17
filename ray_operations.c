@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 08:17:04 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/17 11:55:27 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 12:24:10 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	nray_init(t_new_ray *ray, float ray_angle)
 {
-	ray->ray_face_down = (ray_angle > 0) && (ray_angle < PI);
+	ray->ray_face_down = (ray_angle > 0) & (ray_angle < PI);
 	ray->ray_face_up = !ray->ray_face_down;
-	ray->ray_face_right = (ray_angle < 0.5 * PI) || (ray_angle > 1.5 * PI);
+	ray->ray_face_right = (ray_angle < 0.5 * PI) | (ray_angle > 1.5 * PI);
 	ray->ray_face_left = !ray->ray_face_right;
 	ray->hor_xstep = 0;
 	ray->hor_ystep = 0;
