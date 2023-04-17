@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:14:14 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/16 09:45:58 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 16:47:09 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ int	move_is_valid(t_cub3d *blk, float move_x, float move_y)
 
 	map_grid_x = floor(move_x / TILE_SIZE);
 	map_grid_y = floor(move_y / TILE_SIZE);
-	//For Debug proposions
-	//printf("Grid_X: %d\n", map_grid_x);
-	//printf("Grid_y:%d\n\n", map_grid_y);
-	//printf("GRID = %d\n\n\n", blk->map->map.map[map_grid_y][map_grid_x]);
 	if (blk->map->map.map[map_grid_y][map_grid_x] == '0')
 	{
 		blk->player.x = move_x;

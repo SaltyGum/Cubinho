@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/15 07:51:31 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/17 16:46:45 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char **argv)
 			&blk->bits_per_pixel, &blk->line_length, &blk->endian);
 	init_textures(blk);
 	blk->player.moved = 1;
-	//loop_render(blk);
 	key_listening(blk);
 	//mlx_mouse_hook(blk->win, &clk_act, blk);
 	mlx_loop_hook(blk->mlx, &loop_render, blk);

@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 16:30:38 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:41:44 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ float	norm_angle(float angle);
 
 //Draw Functions
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
-void	draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1);
+void	draw_line(t_cub3d *blk, t_pos wid, t_pos hei);
 void	make_rectangle(t_cub3d *game, t_pos pos[2], int color);
 
 //Render Functions

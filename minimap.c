@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 13:40:12 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:59:42 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,6 @@ void	draw_player(t_cub3d *blk)
 	pos[1].x = blk->player.width * MINIMAP_SCALE + pos[0].x;
 	pos[1].y = blk->player.height * MINIMAP_SCALE + pos[0].y;
 	make_rectangle(blk, pos, 0xf1d2a2);
-//	draw_line(blk, blk->player.x * MINIMAP_SCALE,
-//		blk->player.y * MINIMAP_SCALE,
-//		blk->player.x * MINIMAP_SCALE + cos(blk->player.rotation_angle) * 20,
-//		blk->player.y * MINIMAP_SCALE + sin(blk->player.rotation_angle) * 20);
 }
 
 int	is_a_wall(t_cub3d *blk, float x, float y)
@@ -99,14 +95,18 @@ void	cast_rays(t_cub3d *blk)
 
 void	render_rays(t_cub3d *blk)
 {
-	int	i;
+	int		i;
+	t_pos	wid;
+	t_pos	hei;
 
 	i = 0;
 	while (i < NB_OF_RAYS)
 	{
-		draw_line(blk, blk->player.x * MINIMAP_SCALE,
-			blk->player.y * MINIMAP_SCALE, blk->ray[i].hit_x_wall
-			* MINIMAP_SCALE, blk->ray[i].hit_y_wall * MINIMAP_SCALE);
+		wid.x = blk->player.x * MINIMAP_SCALE;				//x0
+		wid.y = blk->ray[i].hit_x_wall * MINIMAP_SCALE;		//x1
+		hei.x = blk->player.y * MINIMAP_SCALE;				//y0
+		hei.y = blk->ray[i].hit_y_wall * MINIMAP_SCALE;		//y1
+		draw_line(blk, wid, hei);
 		i++;
 	}
 }
@@ -118,3 +118,10 @@ void	minimap_render(t_cub3d *blk)
 	render_rays(blk);
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
 }
+
+/*	OLD DRAW_LINE
+	draw_line(blk,	blk->player.x * MINIMAP_SCALE,//x0
+					blk->player.y * MINIMAP_SCALE,//y0
+					blk->ray[i].hit_x_wall * MINIMAP_SCALE,//x1
+					blk->ray[i].hit_y_wall * MINIMAP_SCALE);//y1
+*/
