@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 17:41:44 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 18:07:09 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ float	norm_angle(float angle);
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
 void	draw_line(t_cub3d *blk, t_pos wid, t_pos hei);
 void	make_rectangle(t_cub3d *game, t_pos pos[2], int color);
+void	get_rect(t_cub3d *blk, int x, int y, int color);
+void	draw_player(t_cub3d *blk);
 
 //Render Functions
 void	minimap_render(t_cub3d *blk);

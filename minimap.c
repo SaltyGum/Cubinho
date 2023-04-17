@@ -6,24 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 17:59:42 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 18:06:07 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
-
-void	get_rect(t_cub3d *blk, int x, int y, int color)
-{
-	t_pos	pos[2];
-	float	sides;
-
-	sides = (TILE_SIZE / 4) * MINIMAP_SCALE2;
-	pos[0].x = x;
-	pos[0].y = y;
-	pos[1].x = x + sides;
-	pos[1].y = y + sides;
-	make_rectangle(blk, pos, color);
-}
 
 void	draw_minimap(t_cub3d *blk)
 {
@@ -50,17 +37,6 @@ void	draw_minimap(t_cub3d *blk)
 		}
 		i++;
 	}
-}
-
-void	draw_player(t_cub3d *blk)
-{
-	t_pos	pos[2];
-
-	pos[0].x = blk->player.x * MINIMAP_SCALE;
-	pos[0].y = blk->player.y * MINIMAP_SCALE;
-	pos[1].x = blk->player.width * MINIMAP_SCALE + pos[0].x;
-	pos[1].y = blk->player.height * MINIMAP_SCALE + pos[0].y;
-	make_rectangle(blk, pos, 0xf1d2a2);
 }
 
 int	is_a_wall(t_cub3d *blk, float x, float y)
@@ -118,7 +94,6 @@ void	minimap_render(t_cub3d *blk)
 	render_rays(blk);
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
 }
-
 /*	OLD DRAW_LINE
 	draw_line(blk,	blk->player.x * MINIMAP_SCALE,//x0
 					blk->player.y * MINIMAP_SCALE,//y0
