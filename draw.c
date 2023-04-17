@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 12:27:00 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 08:33:17 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/17 11:58:52 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ void	generate3d_projection(t_cub3d *blk)
 		while (y < wall_top_pix)
 		{
 			my_mlx_pixelput(blk, i, y, blk->map->ceil);
-			y++;}
-
-		int texture_offset_x;
-        if (blk->ray[i].is_hit_vertical)
-            texture_offset_x = (int)blk->ray[i].hit_y_wall % TEXTURE_HEIGHT;
-        else
-            texture_offset_x = (int)blk->ray[i].hit_x_wall % TEXTURE_WIDTH;
+			y++;
+		}
+		int	texture_offset_x;
+		if (blk->ray[i].is_hit_vertical)
+			texture_offset_x = (int)blk->ray[i].hit_y_wall % TEXTURE_HEIGHT;
+		else
+			texture_offset_x = (int)blk->ray[i].hit_x_wall % TEXTURE_WIDTH;
 		//WallColors
 		y = wall_top_pix;
 		while (y < wall_bot_pix)
@@ -111,7 +111,6 @@ void	generate3d_projection(t_cub3d *blk)
 			dist_from_top = y + (wall_strip_height / 2) - (HEIGHT / 2);
 			texture_offset_y = dist_from_top
 				* ((float)TEXTURE_HEIGHT / wall_strip_height);
-
 			if (blk->ray[i].is_hit_vertical
 				&& blk->ray[i].is_ray_face_right)
 			{
@@ -147,7 +146,8 @@ void	generate3d_projection(t_cub3d *blk)
 		while (y < HEIGHT)
 		{
 			my_mlx_pixelput(blk, i, y, blk->map->floor);
-			y++;}
+			y++;
+		}
 		i++;
 	}
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
