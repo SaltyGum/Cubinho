@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::   */
-/*	 draw.c												:+:		 :+:	:+:   */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: dvargas < dvargas@student.42.rio>			+#+  +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2023/03/19 14:32:10 by jeluiz4		   #+#	  #+#			  */
-/*	 Updated: 2023/04/12 16:21:37 by jeluiz4		  ###	########.fr		  */
-/*																			  */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeluiz4 <jeffluiz97@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/16 12:27:00 by jeluiz4           #+#    #+#             */
+/*   Updated: 2023/04/16 12:33:41 by jeluiz4          ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
@@ -64,33 +64,33 @@ void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
 
 void	generate3d_projection(t_cub3d *blk)
 {
-	float	perpDistance;
-	float	distanceProjPlane;
-	float	projectedWallHeight;
-	float		wallStripHeight;
-	float		wallTopPixel;
-	float		y;
-	float		wallBottomPixel;
+	float	perp_dist;
+	float	dist_proj_plane;
+	float	proj_wall_hei;
+	float	wall_strip_height;
+	float	wall_top_pix;
+	float	wall_bot_pix;
+	float	y;
 	int		i;
 
 	i = 0;
 	//mlx_clear_window(blk->mlx ,blk->win);
 	while (i < NB_OF_RAYS)
 	{
-		perpDistance = blk->ray[i].distance * cos(blk->ray[i].ray_angle - blk->player.rotation_angle);
-		distanceProjPlane = ((float)WIDTH / 2.0) / tan(FOV_ANGLE / 2.0);
-		projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
-		wallStripHeight = projectedWallHeight;
-		wallTopPixel = ((float)HEIGHT/ 2.0) - (wallStripHeight / 2.0);
-		if (wallTopPixel < 0)
-			wallTopPixel = 0;
-
-		wallBottomPixel = ((float)HEIGHT / 2.0) + (wallStripHeight / 2.0);
-		if	(wallBottomPixel > HEIGHT)
-			wallBottomPixel = (float)HEIGHT;
+		perp_dist = blk->ray[i].distance * cos(blk->ray[i].ray_angle
+				- blk->player.rotation_angle);
+		dist_proj_plane = ((float)WIDTH / 2.0) / tan(FOV_ANGLE / 2.0);
+		proj_wall_hei = (TILE_SIZE / perp_dist) * dist_proj_plane;
+		wall_strip_height = proj_wall_hei;
+		wall_top_pix = ((float)HEIGHT / 2.0) - (wall_strip_height / 2.0);
+		if (wall_top_pix < 0)
+			wall_top_pix = 0;
+		wall_bot_pix = ((float)HEIGHT / 2.0) + (wall_strip_height / 2.0);
+		if (wall_bot_pix > HEIGHT)
+			wall_bot_pix = (float)HEIGHT;
 		//Sky Color
 		y = 0;
-		while(y < wallTopPixel)
+		while (y < wall_top_pix)
 		{
 			my_mlx_pixelput(blk, i, y, blk->map->ceil);
 			y++;}
@@ -100,42 +100,53 @@ void	generate3d_projection(t_cub3d *blk)
             textureOffsetX = (int)blk->ray[i].hit_y_wall % TEXTURE_HEIGHT;
         else
             textureOffsetX = (int)blk->ray[i].hit_x_wall % TEXTURE_WIDTH;
-
 		//WallColors
-		// wallBottomPixel = wallBottomPixel > HEIGHT ? HEIGHT : wallBottomPixel;
-		// render the wall from wallTopPixel to wallBottomPixel
-		y = wallTopPixel;
-		while (y < wallBottomPixel)
+		// wall_bot_pix = wall_bot_pix > HEIGHT ? HEIGHT : wall_bot_pix;
+		// render the wall from wall_top_pix to wall_bot_pix
+		y = wall_top_pix;
+		while (y < wall_bot_pix)
 		{
-			int distanceFromTop = y + (wallStripHeight / 2) - (HEIGHT / 2);
-			int textureOffsetY = distanceFromTop * ((float)TEXTURE_HEIGHT / wallStripHeight);
-			u_int32_t texelColor;
-			if (blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_right)
+			int			dist_from_top;
+			int			sprite_offset_y;
+			u_int32_t	texel_color;
+
+			dist_from_top = y + (wall_strip_height / 2) - (HEIGHT / 2);
+			sprite_offset_y = dist_from_top
+				* ((float)TEXTURE_HEIGHT / wall_strip_height);
+
+			if (blk->ray[i].is_hit_vertical
+				&& blk->ray[i].is_ray_face_right)
 			{
-				texelColor = blk->textureimg[WE].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
-				my_mlx_pixelput(blk, i, y, texelColor);
+				texel_color = blk->textureimg[WE].addr[(TEXTURE_WIDTH
+						* sprite_offset_y) + sprite_offset_x];
+				my_mlx_pixelput(blk, i, y, texel_color);
 			}
-			else if (blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_left)
+			else if (blk->ray[i].is_hit_vertical
+				&& blk->ray[i].is_ray_face_left)
 			{
-				texelColor = blk->textureimg[EA].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
-				my_mlx_pixelput(blk, i, y, texelColor);
+				texel_color = blk->textureimg[EA].addr[(TEXTURE_WIDTH
+						* sprite_offset_y) + sprite_offset_x];
+				my_mlx_pixelput(blk, i, y, texel_color);
 			}
-			else if(!blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_up)
+			else if (!blk->ray[i].is_hit_vertical
+				&& blk->ray[i].is_ray_face_up)
 			{
-				texelColor = blk->textureimg[NO].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
-				my_mlx_pixelput(blk, i, y, texelColor);
+				texel_color = blk->textureimg[NO].addr[(TEXTURE_WIDTH
+						* sprite_offset_y) + sprite_offset_x];
+				my_mlx_pixelput(blk, i, y, texel_color);
 			}
-			else if(!blk->ray[i].is_hit_vertical && blk->ray[i].is_ray_face_down)
+			else if (!blk->ray[i].is_hit_vertical
+				&& blk->ray[i].is_ray_face_down)
 			{
-				texelColor = blk->textureimg[SO].addr[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
-				my_mlx_pixelput(blk, i, y, texelColor);
+				texel_color = blk->textureimg[SO].addr[(TEXTURE_WIDTH
+						* sprite_offset_y) + sprite_offset_x];
+				my_mlx_pixelput(blk, i, y, texel_color);
 			}
-			//[(WIDTH * y) + i] = blk->ray[i].is_hit_vertical ? 0xFFFFFFFF : 0xFFCCCCCC;
 			y++;
 		}
 		//Floor Color
-		y = wallBottomPixel;
-		while(y < HEIGHT)
+		y = wall_bot_pix;
+		while (y < HEIGHT)
 		{
 			my_mlx_pixelput(blk, i, y, blk->map->floor);
 			y++;}

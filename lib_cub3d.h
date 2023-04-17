@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/16 10:56:34 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 08:18:59 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,38 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_new_ray
+{
+	int		ray_face_down;
+	int		ray_face_up;
+	int		ray_face_right;
+	int		ray_face_left;
+	float	hor_xintercept;
+	float	hor_yintercept;
+	float	hor_xstep;
+	float	hor_ystep;
+	float	vert_xintercept;
+	float	vert_yintercept;
+	float	vert_xstep;
+	float	vert_ystep;
+	int		hor_wall_hit;
+	float	hor_wall_hit_x;
+	float	hor_wall_hit_y;
+	float	next_hor_touch_x;
+	float	next_hor_touch_y;
+	float	hor_x_to_check;
+	float	hor_y_to_check;
+	float	vert_x_to_check;
+	float	vert_y_to_check;
+	int		vert_wall_hit;
+	float	vert_wall_hit_x;
+	float	vert_wall_hit_y;
+	float	next_vert_touch_x;
+	float	next_vert_touch_y;
+	float	hor_hit_distance;
+	float	ver_hit_distance;
+}	t_new_ray;
+
 typedef struct s_player
 {
 	float	x;
@@ -166,6 +198,7 @@ int		ft_close(t_cub3d *blk);
 //Math Functions
 double	degtorad(double degrees);
 double	radtodeg(double radius);
+float	norm_angle(float angle);
 
 //Draw Functions
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
@@ -182,5 +215,16 @@ int		move_player(t_cub3d *blk);
 
 //Ray
 void	cast_rays(t_cub3d *blk);
+void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id);
+
+//Ray operations
+void	find_vert_hit(t_cub3d *blk, t_new_ray *nray);
+void	find_hor_hit(t_cub3d *blk, t_new_ray *nray);
+void	set_vert_step(t_cub3d *blk, t_new_ray *nray, float ray_angle);
+void	set_hor_step(t_cub3d *blk, t_new_ray *nray, float ray_angle);
+void	nray_init(t_new_ray *ray, float ray_angle);
+
+int	is_a_wall(t_cub3d *blk, float x, float y);
+float	points_distance(float x1, float y1, float x2, float y2);
 
 #endif
