@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 12:27:00 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 08:33:17 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/17 14:40:16 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
 		pos[0].y += 1;
 	}
 }
-
+/*
 void	generate3d_projection(t_cub3d *blk)
 {
 	float	perp_dist;
@@ -152,3 +152,4 @@ void	generate3d_projection(t_cub3d *blk)
 	}
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
 }
+*/

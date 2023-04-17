@@ -6,7 +6,7 @@
 #    By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 12:36:42 by jeluiz4           #+#    #+#              #
-#    Updated: 2023/04/17 08:18:11 by dvargas          ###   ########.fr        #
+#    Updated: 2023/04/17 16:32:26 by dvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRCS =	cub3d.c \
 		move.c \
 		ray.c \
 		ray_operations.c \
+		projection.c \
+		projection_operations.c \
 		parse/checkAssets.c \
 		parse/checkAssets_utils.c \
 		parse/colorConversion.c \

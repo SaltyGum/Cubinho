@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 08:18:59 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/17 16:30:38 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,20 @@ typedef struct s_player
 
 }				t_player;
 
+typedef struct s_projection
+{
+	float		perp_dist;
+	float		dist_proj_plane;
+	float		proj_wall_hei;
+	float		wall_strip_height;
+	float		wall_top_pix;
+	float		wall_bot_pix;
+	int			texture_offset_x;
+	int			dist_from_top;
+	int			texture_offset_y;
+	u_int32_t	texel_color;
+}				t_projection;
+
 typedef struct s_ray
 {
 	float	ray_angle;
@@ -204,7 +218,6 @@ float	norm_angle(float angle);
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
 void	draw_line(t_cub3d *blk, float x0, float y0, float x1, float y1);
 void	make_rectangle(t_cub3d *game, t_pos pos[2], int color);
-void	generate3d_projection(t_cub3d *blk);
 
 //Render Functions
 void	minimap_render(t_cub3d *blk);
@@ -226,5 +239,13 @@ void	nray_init(t_new_ray *ray, float ray_angle);
 
 int	is_a_wall(t_cub3d *blk, float x, float y);
 float	points_distance(float x1, float y1, float x2, float y2);
+
+//Projection Functions
+void	generate3d_projection(t_cub3d *blk);
+
+void	init_projection(t_cub3d *blk, t_projection *prj, int i);
+void	set_x_offset(t_cub3d *blk, t_projection *proj, int i);
+void	put_texture(t_cub3d *blk, t_projection *proj, t_pos pos, int size);
+void	set_y_offset(t_projection *proj, int y);
 
 #endif
