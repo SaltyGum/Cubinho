@@ -1,28 +1,10 @@
-
-
-
-
+EA ./maps/HEDGE_1A.xpm
 SO ./maps/uniao.xpm
-
-
-
 NO ./maps/BRICK_3D.xpm
-
-
 WE ./maps/HEDGE_1B.xpm
 
-
-
-
-
-F 20,22,25
-
-
-
-
-C 20,11,20
-
-EA ./maps/HEDGE_1A.xpm
+F 128,96,67
+C 0,181,226
 
 11111
 100E01

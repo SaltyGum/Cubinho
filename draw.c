@@ -92,14 +92,14 @@ void	generate3d_projection(t_cub3d *blk)
 		y = 0;
 		while (y < wall_top_pix)
 		{
-			my_mlx_pixelput(blk, i, y, 0xFF87CEFA);
-			y++;
-		}
-		int	sprite_offset_x;
-		if (blk->ray[i].is_hit_vertical)
-			sprite_offset_x = (int)blk->ray[i].hit_y_wall % TEXTURE_HEIGHT;
-		else
-			sprite_offset_x = (int)blk->ray[i].hit_x_wall % TEXTURE_WIDTH;
+			my_mlx_pixelput(blk, i, y, blk->map->ceil);
+			y++;}
+
+		int textureOffsetX;
+        if (blk->ray[i].is_hit_vertical)
+            textureOffsetX = (int)blk->ray[i].hit_y_wall % TEXTURE_HEIGHT;
+        else
+            textureOffsetX = (int)blk->ray[i].hit_x_wall % TEXTURE_WIDTH;
 		//WallColors
 		// wall_bot_pix = wall_bot_pix > HEIGHT ? HEIGHT : wall_bot_pix;
 		// render the wall from wall_top_pix to wall_bot_pix
@@ -148,9 +148,8 @@ void	generate3d_projection(t_cub3d *blk)
 		y = wall_bot_pix;
 		while (y < HEIGHT)
 		{
-			my_mlx_pixelput(blk, i, y, 0xFFF4A460);
-			y++;
-		}
+			my_mlx_pixelput(blk, i, y, blk->map->floor);
+			y++;}
 		i++;
 	}
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
