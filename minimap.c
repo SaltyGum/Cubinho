@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/18 08:28:41 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/18 14:16:51 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	is_a_wall(t_cub3d *blk, float x, float y)
 	map_grid_y = floor(y / TILE_SIZE);
 	if (x < 0 || x > blk->map->map.width * TILE_SIZE
 		|| y < 0 || y > blk->map->map.height * TILE_SIZE)
+		return (TRUE);
+	if (map_grid_x >= (int) ft_strlen(blk->map->map.map[map_grid_y]))
 		return (TRUE);
 	if (blk->map->map.map[map_grid_y][map_grid_x] == '0')
 		return (FALSE);
