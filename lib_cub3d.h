@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 20:18:42 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/17 18:07:09 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,8 +227,6 @@ int		render(t_cub3d *blk);
 
 //Move Functions
 int		move_player(t_cub3d *blk);
-int		move_to_right(t_cub3d *blk);
-int		move_to_left(t_cub3d *blk);
 
 //Ray
 void	cast_rays(t_cub3d *blk);
