@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:00:28 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/18 07:26:05 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/18 07:34:55 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,22 @@ int	key_release_handle(int key, t_cub3d *blk)
 	return (0);
 }
 
-int	clk_act(t_cub3d *blk)
+int	move_player(t_cub3d *blk)
 {
-	print_player_status(blk);
-	return (0);
+	int	move;
+
+	move = 0;
+	if (blk->player.turn_direction != 0)
+		move += rotate_player(blk);
+	if (blk->player.walk_direction == 1)
+		move += move_to_front(blk);
+	if (blk->player.walk_direction == -1)
+		move += move_to_back(blk);
+	if (blk->player.walk_direction == 2)
+		move += strafe(blk, -1);
+	if (blk->player.walk_direction == -2)
+		move += strafe(blk, 1);
+	return (move);
 }
 
 void	key_listening(t_cub3d *blk)
