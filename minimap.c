@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 18:06:07 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/18 08:28:41 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ void	render_rays(t_cub3d *blk)
 	i = 0;
 	while (i < NB_OF_RAYS)
 	{
-		wid.x = blk->player.x * MINIMAP_SCALE;				//x0
-		wid.y = blk->ray[i].hit_x_wall * MINIMAP_SCALE;		//x1
-		hei.x = blk->player.y * MINIMAP_SCALE;				//y0
-		hei.y = blk->ray[i].hit_y_wall * MINIMAP_SCALE;		//y1
+		wid.x = blk->player.x * MINIMAP_SCALE;
+		wid.y = blk->ray[i].hit_x_wall * MINIMAP_SCALE;
+		hei.x = blk->player.y * MINIMAP_SCALE;
+		hei.y = blk->ray[i].hit_y_wall * MINIMAP_SCALE;
 		draw_line(blk, wid, hei);
 		i++;
 	}
