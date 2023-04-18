@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:14:14 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/18 07:35:05 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/18 08:22:24 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	move_to_front(t_cub3d *blk)
 	double	move_x;
 	double	move_y;
 
+	printf("ANGULOS DA PORRA %f\n", blk->player.rotation_angle);
 	move_step = blk->player.walk_direction * blk->player.walk_speed;
 	move_x = blk->player.x + cos(blk->player.rotation_angle) * move_step;
 	move_y = blk->player.y + sin(blk->player.rotation_angle) * move_step;
@@ -72,5 +73,9 @@ int	rotate_player(t_cub3d *blk)
 {
 	blk->player.rotation_angle += blk->player.turn_direction
 		* blk->player.turn_speed * 0.045;
+	if (blk->player.rotation_angle > (2 * PI))
+		blk->player.rotation_angle -= (2 * PI);
+	else if (blk->player.rotation_angle < 0.0)
+		blk->player.rotation_angle = (2 * PI) - blk->player.rotation_angle;
 	return (1);
 }
