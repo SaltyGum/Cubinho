@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/18 14:27:20 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/18 15:38:22 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_minimap(t_cub3d *blk)
 		j = 0;
 		while (j < blk->map->map.width)
 		{
-			if (map[i][j] == '1')
+			if (map[i][j] == '1' && j <= ft_strlen(blk->map->map.map[i]))
 				get_rect(blk, j * siz, i * siz, RED_PIXEL);
 			else if (map[i][j] == '0')
 				get_rect(blk, j * siz, i * siz, WHITE_PIXEL);

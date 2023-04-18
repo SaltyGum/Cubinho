@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:51:17 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/03/26 08:43:33 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/18 15:33:41 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	**ft_split(char const *s, char c)
 	if (!ft_strchr (s, c))
 		return (NULL);
 	i = ft_wordcount((char *)s, c);
-	matriz = malloc((i + 2) * sizeof(char *));
+	matriz = ft_calloc((i + 2), sizeof(char *));
 	if (!matriz)
 	{
 		free(matriz);

@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/18 13:34:16 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/18 15:33:44 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	player_init(t_cub3d *blk, t_player *player)
 	player->width = 1;
 	player->height = 1;
 	player->rotation_angle = set_direction(blk->map->map.direction);
-	player->walk_speed = 15;
+	player->walk_speed = 10;
 	player->turn_speed = 90 * (PI / 180);
 	player->turn_direction = 0;
 	player->walk_direction = 0;
