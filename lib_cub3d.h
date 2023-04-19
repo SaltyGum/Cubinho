@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/18 07:35:54 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:24:17 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,8 @@ typedef struct s_pos{
 	double y;
 } t_pos;
 
-
+void help(void);
+void help_error(void);
 void	init_textures(t_cub3d *blk);
 
 //utils
