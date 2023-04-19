@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 16:23:37 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 20:55:31 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,3 @@ void	minimap_render(t_cub3d *blk)
 	render_rays(blk);
 	mlx_put_image_to_window(blk->mlx, blk->win, blk->minimap.img, 0, 0);
 }
-/*	OLD DRAW_LINE
-	draw_line(blk,	blk->player.x * MINIMAP_SCALE,//x0
-					blk->player.y * MINIMAP_SCALE,//y0
-					blk->ray[i].hit_x_wall * MINIMAP_SCALE,//x1
-					blk->ray[i].hit_y_wall * MINIMAP_SCALE);//y1
-*/
