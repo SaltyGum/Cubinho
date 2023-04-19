@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:14:14 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/18 08:22:24 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/18 13:32:40 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	strafe(t_cub3d *blk, int x)
 	double	move_x;
 	double	move_y;
 
-	blk->player.rotation_angle += blk->player.turn_direction \
+	angle = blk->player.rotation_angle + blk->player.turn_direction \
 		* blk->player.walk_speed;
 	move_step = x * blk->player.walk_speed;
-	angle = blk->player.rotation_angle + (3 * PI / 2);
+	angle += (3 * PI / 2);
 	move_x = blk->player.x - cos(angle) * move_step;
 	move_y = blk->player.y - sin(angle) * move_step;
 	return (move_is_valid(blk, move_x, move_y));
@@ -50,8 +50,7 @@ int	move_to_front(t_cub3d *blk)
 	double	move_x;
 	double	move_y;
 
-	printf("ANGULOS DA PORRA %f\n", blk->player.rotation_angle);
-	move_step = blk->player.walk_direction * blk->player.walk_speed;
+	move_step = 1 * blk->player.walk_speed;
 	move_x = blk->player.x + cos(blk->player.rotation_angle) * move_step;
 	move_y = blk->player.y + sin(blk->player.rotation_angle) * move_step;
 	return (move_is_valid(blk, move_x, move_y));
@@ -63,7 +62,7 @@ int	move_to_back(t_cub3d *blk)
 	double	move_x;
 	double	move_y;
 
-	move_step = blk->player.walk_direction * blk->player.walk_speed;
+	move_step = -1 * blk->player.walk_speed;
 	move_x = blk->player.x + cos(blk->player.rotation_angle) * move_step;
 	move_y = blk->player.y + sin(blk->player.rotation_angle) * move_step;
 	return (move_is_valid(blk, move_x, move_y));
