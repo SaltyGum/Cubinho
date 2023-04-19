@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 08:34:25 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/17 16:30:39 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 15:33:13 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	draw_sky(t_cub3d *blk, float wall_top_pix, int i, int *y)
 {
 	while (*y < wall_top_pix)
 	{
-		my_mlx_pixelput(blk, i, *y, blk->map->ceil);
+		my_mlx_pixelput(&blk->game, i, *y, blk->map->ceil);
 		(*y)++;
 	}
 }
@@ -25,7 +25,7 @@ void	draw_floor(t_cub3d *blk, int i, int *y)
 {
 	while (*y < HEIGHT)
 	{
-		my_mlx_pixelput(blk, i, *y, blk->map->floor);
+		my_mlx_pixelput(&blk->game, i, *y, blk->map->floor);
 		(*y)++;
 	}
 }
@@ -75,5 +75,5 @@ void	generate3d_projection(t_cub3d *blk)
 		draw_floor(blk, i, &y);
 		i++;
 	}
-	mlx_put_image_to_window(blk->mlx, blk->win, blk->img, 0, 0);
+	mlx_put_image_to_window(blk->mlx, blk->win, blk->game.img, 0, 0);
 }

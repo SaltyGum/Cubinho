@@ -6,16 +6,13 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 12:27:00 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 18:06:35 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/19 16:04:33 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_cub3d.h"
 
-// TO-DO: Colocar essas variaveis no blk pra diminuir isso a norma ta gritando;
-//		  As da chamada da função também só pode ter 4 tem 5;
-
-void	draw_line(t_cub3d *blk, t_pos wid, t_pos hei)
+void	draw_line(t_img *img, t_pos wid, t_pos hei)
 {
 	int		i;
 	int		dx;
@@ -34,7 +31,7 @@ void	draw_line(t_cub3d *blk, t_pos wid, t_pos hei)
 	inc.x = dx / (float)steps;
 	while (i <= steps)
 	{
-		my_mlx_pixelput(blk, wid.x, hei.x, 0x6c7a89);
+		my_mlx_pixelput(img, wid.x, hei.x, 0x6c7a89);
 		wid.x += inc.x;
 		hei.x += inc.y;
 		i++;
@@ -49,10 +46,10 @@ void	draw_player(t_cub3d *blk)
 	pos[0].y = blk->player.y * MINIMAP_SCALE;
 	pos[1].x = blk->player.width * MINIMAP_SCALE + pos[0].x;
 	pos[1].y = blk->player.height * MINIMAP_SCALE + pos[0].y;
-	make_rectangle(blk, pos, 0xf1d2a2);
+	make_rectangle(&blk->minimap, pos, 0xf1d2a2);
 }
 
-void	make_rectangle(t_cub3d *game, t_pos pos[2], int color)
+void	make_rectangle(t_img *game, t_pos pos[2], int color)
 {
 	double	movex;
 
@@ -73,10 +70,10 @@ void	get_rect(t_cub3d *blk, int x, int y, int color)
 	t_pos	pos[2];
 	float	sides;
 
-	sides = (TILE_SIZE / 4) * MINIMAP_SCALE2;
+	sides = TILE_SIZE * MINIMAP_SCALE;
 	pos[0].x = x;
 	pos[0].y = y;
 	pos[1].x = x + sides;
 	pos[1].y = y + sides;
-	make_rectangle(blk, pos, color);
+	make_rectangle(&blk->minimap, pos, color);
 }

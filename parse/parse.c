@@ -6,31 +6,30 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:22:41 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/17 07:33:13 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 15:13:59 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib_cub3d.h"
 
-void set_player_to_zero(t_parse *parse)
+void	set_player_to_zero(t_parse *parse)
 {
-	size_t x;
-	size_t y;
+	size_t	x;
+	size_t	y;
 
 	x = parse->map.playerpositionx;
 	y = parse->map.playerpositiony;
 	parse->map.map[y][x] = '0';
 }
 
-void set_player_direction(t_parse *parse)
+void	set_player_direction(t_parse *parse)
 {
-	size_t x;
-	size_t y;
-	char **map;
+	size_t	x;
+	size_t	y;
+	char	**map;
 
 	x = -1;
 	y = -1;
-
 	map = parse->map.map;
 	while (++y < parse->map.height)
 	{
@@ -70,11 +69,11 @@ t_parse	*parse_map(char *path)
 		return (ft_error("Assets error \n"), free(line), free_parse(parse));
 	parse->map.map = create_map(fd_map, &line);
 	if (!parse->map.map)
-		return (ft_error("Deu ruim no mapa \n"), free_parse(parse));
+		return (ft_error("Map creation gone wrong \n"), free_parse(parse));
 	parse->map.width = set_map_width(parse->map.map);
 	parse->map.height = set_map_height(parse->map.map);
 	if (!find_player(parse, -1, -1, 0))
-		return (ft_error("no Player"), free(line), free_parse(parse));
+		return (ft_error("No player in map"), free(line), free_parse(parse));
 	if (!validate_map(*parse))
 		return (ft_error("Not a valid map\n"), free(line), free_parse(parse));
 	set_player_direction(parse);

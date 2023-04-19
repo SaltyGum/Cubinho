@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 12:24:17 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 16:43:23 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 # define WIDTH 1024
 # define HEIGHT 720
 
-# define MINIMAP_SCALE 0.125
-# define MINIMAP_SCALE2 0.5
+# define MINIMAP_SCALE 0.2
+//# define MINIMAP_SCALE2 0.5
 
 //Ray
 # define NB_OF_RAYS (WIDTH)
@@ -91,10 +91,10 @@ typedef struct s_img
 {
 	void	*img;
 	int 	*addr;
-	int     width;
-	int     height;
-	int		pixel_bits;
-	int		size_line;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
 	int		endian;
 }	t_img;
 
@@ -181,11 +181,8 @@ typedef struct s_cub3d
 	char	*type;
 	void	*mlx;
 	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	t_img	game;
+	t_img	minimap;
 	t_img	textureimg[4];
 
 }				t_cub3d;
@@ -200,7 +197,7 @@ void help_error(void);
 void	init_textures(t_cub3d *blk);
 
 //utils
-void	my_mlx_pixelput(t_cub3d *data, int x, int y, int color);
+void	my_mlx_pixelput(t_img *data, int x, int y, int color);
 
 //Init Functions
 void	player_init(t_cub3d *blk, t_player *player);
@@ -217,8 +214,8 @@ float	norm_angle(float angle);
 
 //Draw Functions
 void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
-void	draw_line(t_cub3d *blk, t_pos wid, t_pos hei);
-void	make_rectangle(t_cub3d *game, t_pos pos[2], int color);
+void	draw_line(t_img *img, t_pos wid, t_pos hei);
+void	make_rectangle(t_img *game, t_pos pos[2], int color);
 void	get_rect(t_cub3d *blk, int x, int y, int color);
 void	draw_player(t_cub3d *blk);
 

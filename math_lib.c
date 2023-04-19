@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:53:08 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/17 11:53:34 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/19 15:39:39 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ double	radtodeg(double radius)
 	return (radius * (180.0 / PI));
 }
 
-void	my_mlx_pixelput(t_cub3d *data, int x, int y, int color)
+void	my_mlx_pixelput(t_img *data, int x, int y, int color)
 {
 	char	*pixel;
 
-	pixel = data->addr
+	pixel = (char *) data->addr
 		+ (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)pixel = color;
 }
