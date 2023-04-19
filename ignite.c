@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 15:40:24 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 20:34:20 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ float	set_direction(char c)
 	return (0);
 }
 
-void	init_texture_image(t_cub3d *blk,t_img *tmp, char *texture)
+void	init_texture_image(t_cub3d *blk, t_img *tmp, char *texture)
 {
 	tmp->img = NULL;
 	tmp->addr = NULL;
@@ -40,7 +40,7 @@ void	init_texture_image(t_cub3d *blk,t_img *tmp, char *texture)
 		printf("This map has broken images!!\n");
 	tmp->addr = (int *) mlx_get_data_addr(tmp->img,
 			&tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
-	return;
+	return ;
 }
 
 void	init_textures(t_cub3d *blk)

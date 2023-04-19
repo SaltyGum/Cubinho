@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 16:45:14 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 20:36:24 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	loop_render(t_cub3d *blk)
 	return (0);
 }
 
-void init_mlx_imgs(t_cub3d *blk)
+void	init_mlx_imgs(t_cub3d *blk)
 {
 	int	map_x;
-	int map_y;
+	int	map_y;
 
 	map_x = 450;
 	map_y = 200;
@@ -35,7 +35,8 @@ void init_mlx_imgs(t_cub3d *blk)
 	blk->win = mlx_new_window(blk->mlx, WIDTH, HEIGHT, "CUB3D");
 	blk->game.img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
 	blk->game.addr = (int *) mlx_get_data_addr(blk->game.img,
-		&blk->game.bits_per_pixel, &blk->game.line_length, &blk->game.endian);
+			&blk->game.bits_per_pixel,
+			&blk->game.line_length, &blk->game.endian);
 	blk->minimap.img = mlx_new_image(blk->mlx, map_x, map_y);
 	blk->minimap.addr = (int *) mlx_get_data_addr(blk->minimap.img,
 			&blk->minimap.bits_per_pixel, &blk->minimap.line_length,
@@ -44,10 +45,11 @@ void init_mlx_imgs(t_cub3d *blk)
 
 int	main(int argc, char **argv)
 {
+	t_cub3d	blk;
+
 	if (argc != 2)
 		return (help_error(), 1);
 	help();
-	t_cub3d	blk;
 	blk.map = parse_map(argv[1]);
 	if (blk.map == NULL)
 		return (help_error(), 1);
