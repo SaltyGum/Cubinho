@@ -25,17 +25,14 @@ float	set_direction(char c)
 	return (0);
 }
 
-t_img	*init_texture_image(t_cub3d *blk, char *texture)
+void	init_texture_image(t_cub3d *blk,t_img *tmp, char *texture)
 {
-	t_img	*tmp;
-
-	tmp = ft_calloc(sizeof(t_img), 1);
 	tmp->img = NULL;
 	tmp->addr = NULL;
 	tmp->width = 0;
 	tmp->height = 0;
 	tmp->pixel_bits = 32;
-	tmp->size_line = blk->textureimg->width * (tmp->pixel_bits / 8);
+	tmp->size_line = tmp->width * (tmp->pixel_bits / 8);
 	tmp->endian = 0;
 	tmp->img = mlx_xpm_file_to_image(blk->mlx,
 			texture, &tmp->width, &tmp->height);
@@ -43,15 +40,15 @@ t_img	*init_texture_image(t_cub3d *blk, char *texture)
 		printf("This map has broken images!!\n");
 	tmp->addr = (int *)mlx_get_data_addr(tmp->img,
 			&tmp->pixel_bits, &tmp->size_line, &tmp->endian);
-	return (tmp);
+	return;
 }
 
 void	init_textures(t_cub3d *blk)
 {
-	blk->textureimg[NO] = *init_texture_image(blk, blk->map->no_texture);
-	blk->textureimg[SO] = *init_texture_image(blk, blk->map->so_texture);
-	blk->textureimg[WE] = *init_texture_image(blk, blk->map->we_texture);
-	blk->textureimg[EA] = *init_texture_image(blk, blk->map->ea_texture);
+	init_texture_image(blk, &blk->textureimg[NO], blk->map->no_texture);
+	init_texture_image(blk, &blk->textureimg[SO], blk->map->so_texture);
+	init_texture_image(blk, &blk->textureimg[WE], blk->map->we_texture);
+	init_texture_image(blk, &blk->textureimg[EA], blk->map->ea_texture);
 }
 
 void	player_init(t_cub3d *blk, t_player *player)
@@ -65,5 +62,5 @@ void	player_init(t_cub3d *blk, t_player *player)
 	player->turn_speed = 90 * (PI / 180);
 	player->turn_direction = 0;
 	player->walk_direction = 0;
-	player->moved = 0;
+	player->moved = 1;
 }

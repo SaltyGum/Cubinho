@@ -26,27 +26,21 @@ int	loop_render(t_cub3d *blk)
 
 int	main(int argc, char **argv)
 {
-	t_cub3d	*blk;
-
-	blk = malloc(sizeof(t_cub3d) * 1);
-	if (!blk)
-		return (1);
-			blk->map = parse_map(argv[1]);
-	if (blk->map == NULL)
+	t_cub3d	blk;
+	blk.map = parse_map(argv[1]);
+	if (blk.map == NULL)
 		return (printf("Algo deu errado no caminho meu chapa\n\n"), 1);
-	player_init(blk, &blk->player);
+	player_init(&blk, &blk.player);
 	if (argc != 2)
 		return (ft_error("Wrong number of arguments"), 1);
 	ft_printf("Parabens, o mapa e valido, vamos brincar\n");
-	blk->mlx = mlx_init();
-	blk->win = mlx_new_window(blk->mlx, WIDTH, HEIGHT, "CUB3D");
-	blk->img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
-	blk->addr = mlx_get_data_addr(blk->img,
-			&blk->bits_per_pixel, &blk->line_length, &blk->endian);
-	init_textures(blk);
-	blk->player.moved = 1;
-	key_listening(blk);
-	//mlx_mouse_hook(blk->win, &clk_act, blk);
-	mlx_loop_hook(blk->mlx, &loop_render, blk);
-	mlx_loop(blk->mlx);
+	blk.mlx = mlx_init();
+	blk.win = mlx_new_window(blk.mlx, WIDTH, HEIGHT, "CUB3D");
+	blk.img = mlx_new_image(blk.mlx, WIDTH, HEIGHT);
+	blk.addr = mlx_get_data_addr(blk.img,
+			&blk.bits_per_pixel, &blk.line_length, &blk.endian);
+	init_textures(&blk);
+	key_listening(&blk);
+	mlx_loop_hook(blk.mlx, &loop_render, &blk);
+	mlx_loop(blk.mlx);
 }
