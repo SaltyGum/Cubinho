@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:28:08 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/17 16:30:13 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 15:42:29 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	put_texture(t_cub3d *blk, t_projection *proj, t_pos pos, int size)
 {
 	proj->texel_color = blk->textureimg[size].addr[(TEXTURE_WIDTH
 			* proj->texture_offset_y) + proj->texture_offset_x];
-	my_mlx_pixelput(blk, pos.x, pos.y, proj->texel_color);
+	my_mlx_pixelput(&blk->game, pos.x, pos.y, proj->texel_color);
 }
 
 void	set_y_offset(t_projection *proj, int y)

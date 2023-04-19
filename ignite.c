@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/18 15:33:44 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/19 15:40:24 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	init_texture_image(t_cub3d *blk,t_img *tmp, char *texture)
 	tmp->addr = NULL;
 	tmp->width = 0;
 	tmp->height = 0;
-	tmp->pixel_bits = 32;
-	tmp->size_line = tmp->width * (tmp->pixel_bits / 8);
+	tmp->bits_per_pixel = 32;
+	tmp->line_length = tmp->width * (tmp->bits_per_pixel / 8);
 	tmp->endian = 0;
 	tmp->img = mlx_xpm_file_to_image(blk->mlx,
 			texture, &tmp->width, &tmp->height);
 	if (tmp->img == NULL || tmp->width != 64 || tmp->height != 64)
 		printf("This map has broken images!!\n");
-	tmp->addr = (int *)mlx_get_data_addr(tmp->img,
-			&tmp->pixel_bits, &tmp->size_line, &tmp->endian);
+	tmp->addr = (int *) mlx_get_data_addr(tmp->img,
+			&tmp->bits_per_pixel, &tmp->line_length, &tmp->endian);
 	return;
 }
 
