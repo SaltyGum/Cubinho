@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 20:34:20 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/19 23:28:07 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	player_init(t_cub3d *blk, t_player *player)
 	player->turn_direction = 0;
 	player->walk_direction = 0;
 	player->moved = 1;
+	player->strafe = 0;
 }
