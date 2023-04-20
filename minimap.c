@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 20:55:31 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/19 23:52:47 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_minimap(t_cub3d *blk)
 	char	**map;
 	float	siz;
 
-	siz = TILE_SIZE * MINIMAP_SCALE;
+	siz = blk->ratio * 1;
 	map = blk->map->map.map;
 	i = 0;
 	while (i < blk->map->map.height)

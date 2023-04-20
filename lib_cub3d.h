@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 23:27:26 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/19 23:45:38 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ typedef struct s_cub3d
 	char	*type;
 	void	*mlx;
 	void	*win;
+	int		ratio;
 	t_img	game;
 	t_img	minimap;
 	t_img	textureimg[4];

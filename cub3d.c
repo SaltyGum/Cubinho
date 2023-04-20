@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 20:36:24 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/19 23:53:02 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,44 @@ int	loop_render(t_cub3d *blk)
 	return (0);
 }
 
+int find_gcf(int a, int b)
+{
+	int temp;
+	while (b != 0)
+	{
+		temp = b;
+		b = a % b;
+		a = temp;
+	}
+	return (a);
+}
+
+void	rationalize(t_cub3d *blk, int *x, int *y)
+{
+	int	vet;
+	int	hor;
+
+	vet = (blk->map->map.width / blk->ratio) * 1.1;
+	hor = (blk->map->map.width / blk->ratio) * 1.1;
+	while (vet <= 350 && hor <= 200)
+	{
+
+		vet += (blk->map->map.width / blk->ratio) * 1.1;
+		hor += (blk->map->map.width / blk->ratio) * 1.1;
+	}
+	*x = hor;
+	*y = vet;
+}
+
 void	init_mlx_imgs(t_cub3d *blk)
 {
 	int	map_x;
 	int	map_y;
 
-	map_x = 450;
-	map_y = 200;
+	map_x = 0;
+	map_y = 0;
+	blk->ratio = find_gcf(blk->map->map.width, blk->map->map.height);
+	rationalize(blk, &map_x, &map_y);
 	blk->mlx = mlx_init();
 	blk->win = mlx_new_window(blk->mlx, WIDTH, HEIGHT, "CUB3D");
 	blk->game.img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
