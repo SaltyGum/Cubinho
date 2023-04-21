@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:50:32 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 20:36:24 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:21:07 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,35 @@ int	loop_render(t_cub3d *blk)
 	return (0);
 }
 
+void	set_minimap_size(t_cub3d *blk)
+{
+	int	i;
+	int	side;
+
+	if (blk->map->map.width > blk->map->map.height)
+		side = blk->map->map.width;
+	else
+		side = blk->map->map.height;
+	i = 0;
+	while (side > 10)
+	{
+		side = side / 2;
+		i++;
+	}
+	blk->scale = i;
+	printf("i = %d \n \n ", blk->scale);
+	return ;
+}
+
 void	init_mlx_imgs(t_cub3d *blk)
 {
 	int	map_x;
 	int	map_y;
 
-	map_x = 450;
-	map_y = 200;
+	set_minimap_size(blk);
+	map_x = (blk->map->map.width * TILE_SIZE * MINIMAP_SCALE) / blk->scale + 11;
+	map_y = (blk->map->map.height * TILE_SIZE * MINIMAP_SCALE)
+		/ blk->scale + 11;
 	blk->mlx = mlx_init();
 	blk->win = mlx_new_window(blk->mlx, WIDTH, HEIGHT, "CUB3D");
 	blk->game.img = mlx_new_image(blk->mlx, WIDTH, HEIGHT);
@@ -49,10 +71,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (help_error(), 1);
-	help();
 	blk.map = parse_map(argv[1]);
 	if (blk.map == NULL)
 		return (help_error(), 1);
+	else
+		help();
 	player_init(&blk, &blk.player);
 	init_mlx_imgs(&blk);
 	init_textures(&blk);

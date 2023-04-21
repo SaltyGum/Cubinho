@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:41:12 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/16 11:19:42 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:37:09 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	find_player(t_parse *parse, size_t x, size_t y, int ret)
 	int		position[2];
 	char	**map;
 
-	ret = 0;
 	map = parse->map.map;
 	while (++y < parse->map.height)
 	{

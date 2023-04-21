@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:36:05 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/02 09:33:29 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:16:57 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	validade_color(char *color)
 	tmp = ft_split(color, ',');
 	if (!tmp)
 		return (0);
-	while(tmp[i])
+	while (tmp[i])
 		i++;
 	if (i != 3)
 		return (free_matrix((void **)tmp), 0);
@@ -54,7 +54,6 @@ int	validade_color(char *color)
 
 int	is_empty(char *line)
 {
-	//if(ft_strlen(line) == 2 && line[0] == '\r' && line[1] == '\n') <- para testes no windows
 	if (ft_strlen(line) == 1 && line[0] == '\n')
 		return (1);
 	return (0);
