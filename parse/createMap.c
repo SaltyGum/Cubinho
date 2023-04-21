@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:31:32 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/02 07:40:57 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:10:05 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	map_valid_line(char *line)
 	if (!line)
 		return (free(line), 0);
 	if (!check_map_char(line))
-		return (free(line),0);
+		return (free(line), 0);
 	else if (is_empty(line))
-		return (free(line),0);
+		return (free(line), 0);
 	return (1);
 }
 
@@ -69,12 +69,12 @@ char	*get_map_one_line(int fd_map, char **line)
 char	**create_map(int fd, char **line)
 {
 	char	**ret;
-	char	*mapInOneLine;
+	char	*map_one_line;
 
-	mapInOneLine = get_map_one_line(fd, line);
-	if (!mapInOneLine)
+	map_one_line = get_map_one_line(fd, line);
+	if (!map_one_line)
 		return (NULL);
-	ret = ft_split(mapInOneLine, '\n');
-	free(mapInOneLine);
+	ret = ft_split(map_one_line, '\n');
+	free(map_one_line);
 	return (ret);
 }

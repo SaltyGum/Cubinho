@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:31:38 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/02 07:40:59 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:22:12 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	extract_texture(char *line, t_parse *parse)
 {
 	char	*path;
 	int		i;
-	i = 2;
 
+	i = 2;
 	while (line && line[i] == ' ')
 		i++;
 	path = line + i;
@@ -27,7 +27,7 @@ int	extract_texture(char *line, t_parse *parse)
 	if (!ft_strncmp("NO", line, 2) && can_save(parse, path, 1) == 1)
 		return (parse->no_texture = ft_strdup(path), 1);
 	if (!ft_strncmp("SO", line, 2) && can_save(parse, path, 2))
-		return(parse->so_texture = ft_strdup(path), 1);
+		return (parse->so_texture = ft_strdup(path), 1);
 	if (!ft_strncmp("EA", line, 2) && can_save(parse, path, 3))
 		return (parse->ea_texture = ft_strdup(path), 1);
 	if (!ft_strncmp("WE", line, 2) && can_save(parse, path, 4))
@@ -90,22 +90,15 @@ int	extract_assets(int fd_map, char **line, t_parse *parse)
 		if (is_texture(*line))
 		{
 			if (!extract_texture(*line, parse))
-			{
-				result = 1;
 				break ;
-			}
 		}
 		else if (is_color(*line))
 		{
 			if (!extract_color(*line, parse))
-			{
-				result = 1;
 				break ;
-			}
 		}
 		else if (!is_empty(*line))
 		{
-			result = 1;
 			break ;
 		}
 		free(*line);

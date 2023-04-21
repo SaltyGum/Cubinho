@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:02:22 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 20:55:31 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:07:37 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_minimap(t_cub3d *blk)
 	char	**map;
 	float	siz;
 
-	siz = TILE_SIZE * MINIMAP_SCALE;
+	siz = (TILE_SIZE * MINIMAP_SCALE) / blk->scale;
 	map = blk->map->map.map;
 	i = 0;
 	while (i < blk->map->map.height)
@@ -78,10 +78,10 @@ void	render_rays(t_cub3d *blk)
 	i = 0;
 	while (i < NB_OF_RAYS)
 	{
-		wid.x = blk->player.x * MINIMAP_SCALE;
-		wid.y = blk->ray[i].hit_x_wall * MINIMAP_SCALE;
-		hei.x = blk->player.y * MINIMAP_SCALE;
-		hei.y = blk->ray[i].hit_y_wall * MINIMAP_SCALE;
+		wid.x = (blk->player.x * MINIMAP_SCALE) / blk->scale;
+		wid.y = (blk->ray[i].hit_x_wall * MINIMAP_SCALE) / blk->scale;
+		hei.x = (blk->player.y * MINIMAP_SCALE) / blk->scale;
+		hei.y = (blk->ray[i].hit_y_wall * MINIMAP_SCALE) / blk->scale;
 		draw_line(&blk->minimap, wid, hei);
 		i++;
 	}
@@ -90,7 +90,6 @@ void	render_rays(t_cub3d *blk)
 void	minimap_render(t_cub3d *blk)
 {
 	draw_minimap(blk);
-	draw_player(blk);
 	render_rays(blk);
-	mlx_put_image_to_window(blk->mlx, blk->win, blk->minimap.img, 0, 0);
+	mlx_put_image_to_window(blk->mlx, blk->win, blk->minimap.img, 5, 5);
 }
