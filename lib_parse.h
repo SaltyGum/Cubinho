@@ -6,12 +6,12 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 07:23:41 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/21 20:36:02 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:42:54 by jeluiz4          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBPARSE_H
-# define LIBPARSE_H
+#ifndef LIB_PARSE_H
+# define LIB_PARSE_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -24,8 +24,8 @@ typedef struct s_map{
 	size_t	playerpositionx;
 	size_t	playerpositiony;
 	char	direction;
-	int	tile_width;
-	int	tile_height;
+	int		tile_width;
+	int		tile_height;
 }	t_map;
 
 typedef struct s_parse{
