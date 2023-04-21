@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:19 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/21 19:50:42 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:50:44 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@
 typedef struct s_img
 {
 	void	*img;
-	int 	*addr;
+	int		*addr;
 	int		width;
 	int		height;
 	int		bits_per_pixel;
@@ -176,37 +176,41 @@ typedef struct s_ray
 
 typedef struct s_cub3d
 {
-	t_player player;
-	t_parse	*map;
-	t_ray	ray[NB_OF_RAYS];
-	char	*type;
-	void	*mlx;
-	void	*win;
-	int		scale;
-	t_img	game;
-	t_img	minimap;
-	t_img	textureimg[4];
+	t_player	player;
+	t_parse		*map;
+	t_ray		ray[NB_OF_RAYS];
+	char		*type;
+	void		*mlx;
+	void		*win;
+	int			scale;
+	t_img		game;
+	t_img		minimap;
+	t_img		textureimg[4];
 
 }				t_cub3d;
 
 typedef struct s_pos{
-	double x;
-	double y;
-} t_pos;
+	double	x;
+	double	y;
+}			t_pos;
 
-void help(void);
-void help_error(void);
+void	help(void);
+void	help_error(void);
 void	init_textures(t_cub3d *blk);
 
 //utils
+int		is_a_wall(t_cub3d *blk, float x, float y);
 void	my_mlx_pixelput(t_img *data, int x, int y, int color);
+void	set_minimap_size(t_cub3d *blk);
 
 //Init Functions
 void	player_init(t_cub3d *blk, t_player *player);
+void	init_textures(t_cub3d *blk);
+void	player_init(t_cub3d *blk, t_player *player);
+void	init_mlx_imgs(t_cub3d *blk);
 
-//Control Functions
+//Handler Functions
 void	key_listening(t_cub3d *blk);
-int		clk_act(t_cub3d *blk);
 int		ft_close(t_cub3d *blk);
 
 //Math Functions
@@ -215,7 +219,6 @@ double	radtodeg(double radius);
 float	norm_angle(float angle);
 
 //Draw Functions
-void	draw_rectangle(t_cub3d *game, int x, int y, int width, int height, int color);
 void	draw_line(t_img *img, t_pos wid, t_pos hei);
 void	make_rectangle(t_img *game, t_pos pos[2], int color);
 void	get_rect(t_cub3d *blk, int x, int y, int color);
@@ -227,15 +230,14 @@ int		render(t_cub3d *blk);
 
 //Move Functions
 int		move_player(t_cub3d *blk);
-int	strafe(t_cub3d *blk, int x);
-int	move_to_front(t_cub3d *blk);
-int	move_to_back(t_cub3d *blk);
-int	rotate_player(t_cub3d *blk);
-
+int		strafe(t_cub3d *blk, int x);
+int		move_to_front(t_cub3d *blk);
+int		move_to_back(t_cub3d *blk);
+int		rotate_player(t_cub3d *blk);
 
 //Ray
-void	cast_rays(t_cub3d *blk);
 void	cast_one_ray(t_cub3d *blk, float ray_angle, int ray_id);
+void	cast_rays(t_cub3d *blk);
 
 //Ray operations
 void	find_vert_hit(t_cub3d *blk, t_new_ray *nray);
@@ -243,13 +245,10 @@ void	find_hor_hit(t_cub3d *blk, t_new_ray *nray);
 void	set_vert_step(t_cub3d *blk, t_new_ray *nray, float ray_angle);
 void	set_hor_step(t_cub3d *blk, t_new_ray *nray, float ray_angle);
 void	nray_init(t_new_ray *ray, float ray_angle);
-
-int	is_a_wall(t_cub3d *blk, float x, float y);
 float	points_distance(float x1, float y1, float x2, float y2);
 
 //Projection Functions
 void	generate3d_projection(t_cub3d *blk);
-
 void	init_projection(t_cub3d *blk, t_projection *prj, int i);
 void	set_x_offset(t_cub3d *blk, t_projection *proj, int i);
 void	put_texture(t_cub3d *blk, t_projection *proj, t_pos pos, int size);
