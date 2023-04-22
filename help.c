@@ -6,7 +6,7 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 09:36:19 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/19 20:44:04 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/21 20:50:55 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,24 @@ void	help_error(void)
 	printf("- The map need to have a player.\n\n");
 	printf("Run the game with map name as first argument -> ");
 	printf("./cub3d maps/yourmap.cub\n\n");
+}
+
+void	set_minimap_size(t_cub3d *blk)
+{
+	int	i;
+	int	side;
+
+	if (blk->map->map.width > blk->map->map.height)
+		side = blk->map->map.width;
+	else
+		side = blk->map->map.height;
+	i = 0;
+	while (side > 10)
+	{
+		side = side / 2;
+		i++;
+	}
+	blk->scale = i;
+	printf("i = %d \n \n ", blk->scale);
+	return ;
 }
