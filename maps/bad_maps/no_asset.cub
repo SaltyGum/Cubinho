@@ -1,7 +1,6 @@
-EA maps/standard.xpm
-SO maps/standard.xpm
-NO maps/standard.xpm
-WE maps/standard.xpm
+EA maps/HEDGE_1A.xpm
+NO maps/BRICK_3D.xpm
+WE maps/HEDGE_1B.xpm
 
 F 128,96,67
 C 0,181,226

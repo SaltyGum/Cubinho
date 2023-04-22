@@ -1,10 +1,10 @@
-NO maps/uniao.xpm
-SO maps/BRICK_3D.xpm
-WE maps/HEDGE_1A.xpm
-EA maps/BRICK_3E.xpm
+NO maps/standard.xpm
+SO maps/standard.xpm
+WE maps/standard.xpm
+EA maps/standard.xpm
 
-F 20,22,25
-C 20,14,15
+F 100,100,100
+C 200,200,200
 
         1111111111111111111111111
         1000000000000000000000001

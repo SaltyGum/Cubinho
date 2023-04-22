@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:27:36 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/21 20:50:02 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:35 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	init_mlx_imgs(t_cub3d *blk)
 {

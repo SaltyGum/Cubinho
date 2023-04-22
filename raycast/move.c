@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:14:14 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/18 13:32:40 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:31 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 int	move_is_valid(t_cub3d *blk, float move_x, float move_y)
 {

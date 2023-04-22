@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:43:46 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/17 08:19:14 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:15 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	copy_ray_in_blk(t_cub3d *blk, t_new_ray *nray, float angle, int ray_id)
 {

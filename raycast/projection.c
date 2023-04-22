@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 08:34:25 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/19 15:33:13 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:32 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	draw_sky(t_cub3d *blk, float wall_top_pix, int i, int *y)
 {

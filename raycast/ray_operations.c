@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 08:17:04 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/17 12:24:10 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:33 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	nray_init(t_new_ray *ray, float ray_angle)
 {

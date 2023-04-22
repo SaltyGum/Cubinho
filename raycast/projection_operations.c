@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:28:08 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/19 15:42:29 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:32 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	init_projection(t_cub3d *blk, t_projection *prj, int i)
 {

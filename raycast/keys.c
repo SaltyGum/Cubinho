@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:00:28 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 23:34:40 by jeluiz4          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:26 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	print_player_status(t_cub3d *blk)
 {

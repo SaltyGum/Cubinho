@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 12:27:00 by jeluiz4           #+#    #+#             */
-/*   Updated: 2023/04/19 16:04:33 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:30 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	draw_line(t_img *img, t_pos wid, t_pos hei)
 {

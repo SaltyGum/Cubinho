@@ -6,11 +6,11 @@
 /*   By: dvargas < dvargas@student.42.rio>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 09:36:19 by dvargas           #+#    #+#             */
-/*   Updated: 2023/04/21 20:50:55 by dvargas          ###   ########.fr       */
+/*   Updated: 2023/04/22 08:13:33 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_cub3d.h"
+#include "../lib_cub3d.h"
 
 void	print_cubinho(void)
 {
@@ -82,6 +82,5 @@ void	set_minimap_size(t_cub3d *blk)
 		i++;
 	}
 	blk->scale = i;
-	printf("i = %d \n \n ", blk->scale);
 	return ;
 }
