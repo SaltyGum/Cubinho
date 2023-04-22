@@ -18,10 +18,9 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include "mlx_linux/mlx.h"
+# include "mlx/mlx.h"
 # include "libft/libft.h"
 # include "lib_parse.h"
-# include <X11/Xlib.h>
 
 //BASIC
 # define FALSE 0
@@ -53,22 +52,16 @@
 
 // BUTTONS SETUP
 // ARROWS
-# define ARROW_UP 65362
-# define ARROW_DOWN 65364
-# define ARROW_LEFT 65361
-# define ARROW_RIGHT 65363
-# define W 119
-# define A 97
-# define S 115
-# define D 100
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+# define W 13
+# define A 0
+# define S 1
+# define D 2
 
 // SCROLLING
 # define SCRL_UP 4
 # define SCRL_DOWN 5
-
-// COLOR CHANGE HELP PANEL AND RESET
-# define C_BUT 99
-# define R_BUT 114
 
 //Color
 # define RED_PIXEL 0xFF0000
@@ -78,7 +71,7 @@
 # define PIXEL_NONE 0xFF000000
 
 // WINDOW CLOSE
-# define ESC_BUT 65307
+# define ESC_BUT 53
 # define WIN_X 17
 
 //rosa dos ventos

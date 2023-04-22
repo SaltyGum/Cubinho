@@ -25,17 +25,17 @@ int	key_press_handle(int key, t_cub3d *blk)
 	if (key == ESC_BUT)
 		ft_close(blk);
 	else if (key == W)
-		blk->player.walk_direction += 1;
+		blk->player.walk_direction = 1;
 	else if (key == S)
-		blk->player.walk_direction -= 1;
+		blk->player.walk_direction = -1;
 	else if (key == ARROW_RIGHT)
-		blk->player.turn_direction += 1;
+		blk->player.turn_direction = 1;
 	else if (key == ARROW_LEFT)
-		blk->player.turn_direction -= 1;
+		blk->player.turn_direction = -1;
 	else if (key == A)
-		blk->player.strafe += 2;
+		blk->player.strafe = 2;
 	else if (key == D)
-		blk->player.strafe -= 2;
+		blk->player.strafe = -2;
 	return (0);
 }
 
@@ -79,6 +79,6 @@ int	move_player(t_cub3d *blk)
 void	key_listening(t_cub3d *blk)
 {
 	mlx_hook(blk->win, WIN_X, 0, &ft_close, blk);
-	mlx_hook(blk->win, KeyPress, KeyPressMask, key_press_handle, blk);
-	mlx_hook(blk->win, KeyRelease, KeyReleaseMask, &key_release_handle, blk);
+	mlx_hook(blk->win, 2, 0, key_press_handle, blk);
+	mlx_hook(blk->win, 3, 0, &key_release_handle, blk);
 }

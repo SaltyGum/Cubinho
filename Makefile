@@ -45,7 +45,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@cd $(LIBD) && make
-	$(CC) $(FLAGS) $(OBJS) $(LIBA) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LIBA) -Ofast -lm -Lmlx -lmlx -L/usr/lib -Imlx -framework OpenGL -framework AppKit -o $(NAME)
 	@printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\e[1;31m"
 	@printf "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
 	@printf "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⠤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣬⣍⡳⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -90,7 +90,7 @@ $(NAME): $(OBJS)
 	@printf "\n\n\n\n\n\n\n"
 
 $(OBJS): %.o: %.c
-	$(CC) $(FLAGS) -I/usr/include -lmlx_Linux -c $< -o $@
+	$(CC) $(FLAGS) -Imlx -c $< -o $@
 
 clean:
 	@cd $(LIBD) && make clean
